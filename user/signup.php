@@ -1,3 +1,54 @@
+<?php
+include("../connection/config.php");
+$username = $password = $repeat_password = "";
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    if(trim($_POST["username"]) !== ""){
+        $sql = "SELECT id FROM users WHERE username = ?";
+
+        if($stmt = $conn->prepare($sql)){
+            $stmt->bind_param("s", $param_username);
+            $param_username = trim($_POST["username"]);
+
+            if($stmt->execute()){
+                $stmt->store_result();
+
+                if($stmt->num_rows() == 1) {
+                    echo "Username is taken.";
+                } else{
+                    $username = trim($_POST["username"]);
+                }
+            } else{
+                echo "Something went wrong.";
+            }
+            $stmt->close();
+        }
+    }
+    if(trim($_POST["password"]) !== ""){
+        $password = trim($_POST["password"]);
+    }
+
+    if(trim($_POST["repeat_password"]) !== ""){
+        $repeat_password = trim($_POST["repeat_password"]);
+
+        $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+        if($stmt = $conn->prepare($sql)){
+            $stmt->bind_param("ss", $param_username, $param_password);
+
+            $param_username = $username;
+            $param_password = password_hash($password, PASSWORD_DEFAULT);
+
+            if($stmt->execute()){
+                header("location: login.php");
+            } else{
+                echo "Something went wrong.";
+            }
+            $stmt->close();
+        }
+    }
+    $conn->close();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +72,7 @@
                 <img src="https://cdn.discordapp.com/attachments/943544446551752746/973272366648021052/unknown.png"
                      alt="profile" id="header_profile_img">
                 <a href="login.php" id="login-button">Log In</a>
-                <a id="signup-button">Sign Up</a>
+                <a href="signup.php" id="signup-button">Sign Up</a>
             </div>
         </div>
     </div>
@@ -37,7 +88,6 @@
                             <div class="mb-md-5 mt-md-4 pb-5">
 
                                 <h2 class="fw-bold mb-2 text-uppercase">Signup</h2>
-                                <p class="text-white-50 mb-5">Please enter your login and password!</p>
                                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                                     <div class="form-outline form-white mb-4">
                                         <input type="text" id="username" name="username" class="form-control form-control-lg"/>
@@ -47,6 +97,11 @@
                                     <div class="form-outline form-white mb-4">
                                         <input type="password" id="typePasswordX" name="password" class="form-control form-control-lg"/>
                                         <label class="form-label" for="typePasswordX">Password</label>
+                                    </div>
+
+                                    <div class="form-outline form-white mb-4">
+                                        <input type="password" id="typePasswordX" name="repeat_password" class="form-control form-control-lg"/>
+                                        <label class="form-label" for="typePasswordX">Repeat Password</label>
                                     </div>
 
                                     <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a>
@@ -64,8 +119,7 @@
                             </div>
 
                             <div>
-                                <p class="mb-0">Don't have an account? <a href="#!" class="text-white-50 fw-bold">Sign
-                                        Up</a>
+                                <p class="mb-0">Already have an account? <a href="login.php" class="text-white-50 fw-bold">Log In</a>
                                 </p>
                             </div>
 

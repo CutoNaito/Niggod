@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <img src="https://cdn.discordapp.com/attachments/943544446551752746/973272366648021052/unknown.png"
                      alt="profile" id="header_profile_img">
                 <a href="login.php" id="login-button">Log In</a>
-                <a id="signup-button">Sign Up</a>
+                <a href="signup.php" id="signup-button">Sign Up</a>
             </div>
         </div>
     </div>
@@ -113,7 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </div>
 
                             <div>
-                                <p class="mb-0">Don't have an account? <a href="signin.php" class="text-white-50 fw-bold">Sign
+                                <p class="mb-0">Don't have an account? <a href="signup.php" class="text-white-50 fw-bold">Sign
                                         Up</a>
                                 </p>
                             </div>

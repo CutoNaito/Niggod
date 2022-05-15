@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if(!isset($_SESSION["logged"]) || $_SESSION["logged"] !== true){
+if (!isset($_SESSION["logged"]) || $_SESSION["logged"] !== true) {
     header("location: user/login.php");
     exit;
 }
@@ -37,8 +37,25 @@ if(!isset($_SESSION["logged"]) || $_SESSION["logged"] !== true){
     </div>
 </header>
 <main>
-    <div class="container-fluid" id="main_container">
-
+    <div class="container" id="main_container">
+        <div class="post-window">
+            <form>
+                <div class="row">
+                    <div class="col">
+                        <label for="post-input">What's on your mind?</label>
+                        <input type="text" name="post-input" id="post-input">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <a><img src="https://media.discordapp.net/attachments/975385808255201300/975385832355663982/unknown.png" style="width: 50px; height: 50px"></a>
+                    </div>
+                    <div class="col-4">
+                        <input type="submit" value="Post" id="post-submit">
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </main>
 <footer>
