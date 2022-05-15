@@ -1,0 +1,35 @@
+#header_container{
+    background-color: #d7d7d7;
+    width: 100%;
+    height: 15%;
+    position: static;
+}
+#header_text{
+    text-align: left;
+}
+#header_text h1{
+    font-size: 1.7vw;
+}
+#header_home_img{
+    width: 36px;
+    height: 36px;
+    max-width: 100%;
+}
+#header_profile_img{
+    width: 40px;
+    height: 40px;
+    max-width: 100%;
+}
+#header_img{
+    text-align: right;
+}
+footer{
+    background-color: #adc4d2;
+    position: static;
+}
+#footer_links{
+    text-align: center;
+}
+div.bg-danger div.card{
+    background-color: bisque !important;
+}
