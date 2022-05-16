@@ -43,6 +43,9 @@ div.bg-danger div.card{
 .post-window input{
     width: 50%;
 }
+#post-input{
+    height: 50px;
+}
 #post-submit{
     margin: 8px;
 }

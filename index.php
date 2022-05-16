@@ -17,6 +17,7 @@ if (!isset($_SESSION["logged"]) || $_SESSION["logged"] !== true) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"></script>
+    <script src="script/index-script.ts"></script>
 </head>
 <body>
 <header>
@@ -39,16 +40,25 @@ if (!isset($_SESSION["logged"]) || $_SESSION["logged"] !== true) {
 <main>
     <div class="container" id="main_container">
         <div class="post-window">
-            <form>
+            <form action="user/post.php" method="post">
                 <div class="row">
                     <div class="col">
                         <label for="post-input">What's on your mind?</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div style="overflow: hidden; height: 0">
+                            <input type="file" id="fileInput" name="fileInput">
+                        </div>
                         <input type="text" name="post-input" id="post-input">
+                        <button type="button" id="chooseImg" onclick="chooseFile()"><img
+                                    src="https://media.discordapp.net/attachments/975385808255201300/975385832355663982/unknown.png"
+                                    style="width: 50px; height: 50px"></button>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <a><img src="https://media.discordapp.net/attachments/975385808255201300/975385832355663982/unknown.png" style="width: 50px; height: 50px"></a>
                     </div>
                     <div class="col-4">
                         <input type="submit" value="Post" id="post-submit">
