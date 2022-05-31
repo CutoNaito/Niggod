@@ -2,8 +2,15 @@
 session_start();
 
 if (!isset($_SESSION["logged"]) || $_SESSION["logged"] !== true) {
-    header("location: user/login.php");
+    header("location: welcome.php");
     exit;
+}
+include("connection/config.php");
+$sql = "SELECT text_content, image_content, username FROM post INNER JOIN users ON users.id = post.user_id";
+if ($stmt = $conn->prepare($sql)) {
+    if ($stmt->execute()) {
+        $result = $stmt->get_result();
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -30,8 +37,9 @@ if (!isset($_SESSION["logged"]) || $_SESSION["logged"] !== true) {
                 <a href="index.php"> <img
                             src="https://cdn.discordapp.com/attachments/943544446551752746/973269731534577694/unknown.png"
                             alt="home" id="header_home_img"></a>
-                <img src="https://cdn.discordapp.com/attachments/943544446551752746/973272366648021052/unknown.png"
-                     alt="profile" id="header_profile_img">
+                <a href="profile.php"> <img
+                            src="https://cdn.discordapp.com/attachments/943544446551752746/973272366648021052/unknown.png"
+                            alt="profile" id="header_profile_img"></a>
                 <a href="user/logout.php" id="login-button">Log Out</a>
             </div>
         </div>
@@ -65,6 +73,30 @@ if (!isset($_SESSION["logged"]) || $_SESSION["logged"] !== true) {
                     </div>
                 </div>
             </form>
+        </div>
+        <div class="post-select">
+            <div class="row">
+                <div class="col">
+                    <?php
+                    if (!empty($result)) {
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+
+                                ?>
+                                <fieldset id="post-fieldset">
+                                    <p><?php echo $row["username"] ?></p>
+                                    <p><?php echo $row["text_content"] ?></p>
+                                    <img src=<?php echo $row["image_content"] ?>>
+                                </fieldset>
+                                <?php
+                            }
+                        } else {
+                            echo "0 results";
+                        }
+                    }
+                    ?>
+                </div>
+            </div>
         </div>
     </div>
 </main>

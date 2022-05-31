@@ -49,3 +49,17 @@ div.bg-danger div.card{
 #post-submit{
     margin: 8px;
 }
+#profile-register{
+    color: #00ff00;
+}
+#post-fieldset{
+    border: 1px solid black;
+    padding: 5px;
+    width: 40%;
+    text-align: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.post-select{
+    text-align: center;
+}
