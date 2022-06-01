@@ -17,7 +17,7 @@ if ($stmt = $conn->prepare($sql)) {
 } else {
     echo "Something went wrong, please try again later";
 }
-$sql = "SELECT * FROM post WHERE user_id = ?";
+$sql = "SELECT * FROM post WHERE user_id = ? ORDER BY posted_at DESC";
 if ($stmt = $conn->prepare($sql)) {
     $stmt->bind_param('i', $id);
     if ($stmt->execute()) {
@@ -74,6 +74,7 @@ if ($stmt = $conn->prepare($sql)) {
                                 <p><?php echo $username ?></p>
                                 <p><?php echo $row["text_content"] ?></p>
                                 <img src=<?php echo $row["image_content"] ?>>
+                                <p id="posted_at">Posted at: <?php echo $row["posted_at"]?></p>
                             </fieldset>
                             <?php
                         }

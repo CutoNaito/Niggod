@@ -6,7 +6,7 @@ if (!isset($_SESSION["logged"]) || $_SESSION["logged"] !== true) {
     exit;
 }
 include("connection/config.php");
-$sql = "SELECT text_content, image_content, username FROM post INNER JOIN users ON users.id = post.user_id";
+$sql = "SELECT text_content, image_content, username, posted_at FROM post INNER JOIN users ON users.id = post.user_id ORDER BY posted_at DESC";
 if ($stmt = $conn->prepare($sql)) {
     if ($stmt->execute()) {
         $result = $stmt->get_result();
@@ -48,7 +48,7 @@ if ($stmt = $conn->prepare($sql)) {
 <main>
     <div class="container" id="main_container">
         <div class="post-window">
-            <form action="user/post.php" method="post">
+            <form action="user/post.php" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col">
                         <label for="post-input">What's on your mind?</label>
@@ -86,7 +86,8 @@ if ($stmt = $conn->prepare($sql)) {
                                 <fieldset id="post-fieldset">
                                     <p><?php echo $row["username"] ?></p>
                                     <p><?php echo $row["text_content"] ?></p>
-                                    <img src=<?php echo $row["image_content"] ?>>
+                                    <img id="post_image" src="images/<?php echo $row["image_content"] ?>">
+                                    <p id="posted_at">Posted at: <?php echo $row["posted_at"]?></p>
                                 </fieldset>
                                 <?php
                             }

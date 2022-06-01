@@ -63,3 +63,10 @@ div.bg-danger div.card{
 .post-select{
     text-align: center;
 }
+#posted_at{
+    font-size: xx-small;
+}
+#post_image{
+    max-width: 500px;
+    max-height: 500px;
+}
