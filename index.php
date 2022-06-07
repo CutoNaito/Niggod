@@ -33,11 +33,17 @@ if ($stmt = $conn->prepare($sql)) {
             <div class="col-3" id="header_text">
                 <h1>NIGGOD</h1>
             </div>
-            <div class="col-9" id="header_img">
+            <div class="col" id="searchbar_div">
+                <form action="search.php" method="get">
+                    <input type="text" name="username" id="searchbar_input" size="80">
+                    <input type="submit" value="Search">
+                </form>
+            </div>
+            <div class="col-3" id="header_img">
                 <a href="index.php"> <img
                             src="https://cdn.discordapp.com/attachments/943544446551752746/973269731534577694/unknown.png"
                             alt="home" id="header_home_img"></a>
-                <a href="profile.php"> <img
+                <a href="profile.php?username=<?php echo $_SESSION["username"]?>"> <img
                             src="https://cdn.discordapp.com/attachments/943544446551752746/973272366648021052/unknown.png"
                             alt="profile" id="header_profile_img"></a>
                 <a href="user/logout.php" id="login-button">Log Out</a>

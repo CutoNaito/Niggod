@@ -70,3 +70,12 @@ div.bg-danger div.card{
     max-width: 500px;
     max-height: 500px;
 }
+#searchbar_input{
+    width: 70%;
+}
+#searchbar_div{
+    text-align: center;
+    width: 100%;
+    padding: 2px;
+    margin: 5px;
+}

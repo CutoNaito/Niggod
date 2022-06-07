@@ -1,40 +1,27 @@
 <?php
-session_start();
-
-if (!isset($_SESSION["logged"]) || $_SESSION["logged"] !== true) {
-    header("location: welcome.php");
-    exit;
-}
 include("connection/config.php");
-$username_var = trim($_GET["username"]);
-$sql = "SELECT id, username, created_at FROM users WHERE username = ?";
+$uservar = $_GET["username"];
+$sql = "SELECT username FROM users WHERE username LIKE '%$uservar%'";
 if ($stmt = $conn->prepare($sql)) {
-    $stmt->bind_param('s', $username_var);
-    if ($stmt->execute()) {
-        $stmt->bind_result($id, $username, $date);
-        $stmt->fetch();
-        $stmt->close();
-    }
-} else {
-    echo "Something went wrong, please try again later";
-}
-$sql = "SELECT * FROM post WHERE user_id = ? ORDER BY posted_at DESC";
-if ($stmt = $conn->prepare($sql)) {
-    $stmt->bind_param('i', $id);
-    if ($stmt->execute()) {
-        $result = $stmt->get_result();
+    if ($stmt = $conn->prepare($sql)) {
+        if ($stmt->execute()) {
+            $result = $stmt->get_result();
+        }
     }
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Profile - Niggod</title>
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Home - Niggod</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+    <script src="script/index-script.ts"></script>
 </head>
 <body>
 <header>
@@ -43,11 +30,17 @@ if ($stmt = $conn->prepare($sql)) {
             <div class="col-3" id="header_text">
                 <h1>NIGGOD</h1>
             </div>
-            <div class="col-9" id="header_img">
+            <div class="col" id="searchbar_div">
+                <form action="search.php" method="get">
+                    <input type="text" name="username" id="searchbar_input" size="80">
+                    <input type="submit" value="Search">
+                </form>
+            </div>
+            <div class="col-3" id="header_img">
                 <a href="index.php"> <img
                             src="https://cdn.discordapp.com/attachments/943544446551752746/973269731534577694/unknown.png"
                             alt="home" id="header_home_img"></a>
-                <a href="profile.php"> <img
+                <a href="profile.php?username=<?php echo $_SESSION["username"] ?>"> <img
                             src="https://cdn.discordapp.com/attachments/943544446551752746/973272366648021052/unknown.png"
                             alt="profile" id="header_profile_img"></a>
                 <a href="user/logout.php" id="login-button">Log Out</a>
@@ -59,23 +52,13 @@ if ($stmt = $conn->prepare($sql)) {
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1><?php echo $username ?></h1>
-                <p id="profile-register">Registered to Niggod: <?php echo $date ?></p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
                 <?php
                 if (!empty($result)) {
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
-
                             ?>
                             <fieldset id="post-fieldset">
-                                <p><?php echo $username ?></p>
-                                <p><?php echo $row["text_content"] ?></p>
-                                <img id="post_image" src="images/<?php echo $row["image_content"] ?>">
-                                <p id="posted_at">Posted at: <?php echo $row["posted_at"]?></p>
+                                <p><?php echo $row["username"] ?></p>
                             </fieldset>
                             <?php
                         }
@@ -99,5 +82,3 @@ if ($stmt = $conn->prepare($sql)) {
         </div>
     </div>
 </footer>
-</body>
-</html>
