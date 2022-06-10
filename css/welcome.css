@@ -1,4 +1,8 @@
-#log-welcome{
+#log-welcome {
     font-size: large;
     background-color: blue;
+}
+
+.linkForButtons {
+    text-decoration: none !important;
 }
