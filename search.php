@@ -58,7 +58,7 @@ if ($stmt = $conn->prepare($sql)) {
                         while ($row = $result->fetch_assoc()) {
                             ?>
                             <fieldset id="post-fieldset">
-                                <p><?php echo $row["username"] ?></p>
+                                <a href="profile.php?username=<?php echo $row["username"]?>"><?php echo $row["username"] ?></a>
                             </fieldset>
                             <?php
                         }
