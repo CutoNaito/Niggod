@@ -9,16 +9,8 @@
     height: 32px;
     max-width: 100%;
 }
-
 .linkForButtons {
     text-decoration: none !important;
-}
-footer{
-    background-color: #adc4d2;
-    position: static;
-}
-#footer_links{
-    text-align: center;
 }
 div.bg-danger div.card{
     background-color: bisque !important;
@@ -59,13 +51,4 @@ div.bg-danger div.card{
 #post_image{
     max-width: 500px;
     max-height: 500px;
-}
-#searchbar_input{
-    width: 70%;
-}
-#searchbar_div{
-    text-align: center;
-    width: 100%;
-    padding: 2px;
-    margin: 5px;
 }
