@@ -26,7 +26,7 @@ if (isset($_SESSION["logged"]) && $_SESSION["logged"] === true) {
 </head>
 
 <body>
-    <header>
+    <header onmousedown='return false;' onselectstart='return false;'>
         <nav class="navbar bg-light">
             <div class="container-fluid">
                 <!-- Logo -->
