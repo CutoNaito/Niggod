@@ -15,38 +15,8 @@
 div.bg-danger div.card{
     background-color: bisque !important;
 }
-.post-window{
-    padding: 5px;
-    margin: 10px;
-    background-color: #f5f5f5;
-    width: 100%;
-    text-align: center;
-}
-.post-window input{
-    width: 50%;
-}
-#post-input{
-    height: 50px;
-}
-#post-submit{
-    margin: 8px;
-}
 #profile-register{
     color: #00ff00;
-}
-#post-fieldset{
-    border: 1px solid black;
-    padding: 5px;
-    width: 40%;
-    text-align: left;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-.post-select{
-    text-align: center;
-}
-#posted_at{
-    font-size: xx-small;
 }
 #post_image{
     max-width: 500px;

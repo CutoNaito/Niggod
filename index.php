@@ -23,7 +23,7 @@ if ($stmt = $conn->prepare($sql)) {
     <title>Home - Niggod</title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="script/index-script.ts"></script>
-    <link rel="icon" href="../img/NiggodRat.ico">
+    <link rel="icon" href="img/NiggodRat.ico">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 </head>
 
@@ -59,7 +59,7 @@ if ($stmt = $conn->prepare($sql)) {
         </nav>
     </header>
     <main>
-        <div class="container" id="main_container">
+        <div class="container">
             <div class="card bg-dark text-white">
                 <div class="card-body">
                     <form action="user/post.php" method="post" enctype="multipart/form-data">
@@ -88,57 +88,32 @@ if ($stmt = $conn->prepare($sql)) {
                     </form>
                 </div>
             </div>
-            <!--
-            <div class="post-window">
-                <form action="user/post.php" method="post" enctype="multipart/form-data">
-                    <div class="row">
-                        <div class="col">
-                            <label for="post-input">What's on your mind?</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <div style="overflow: hidden; height: 0">
-                                <input type="file" id="fileInput" name="fileInput">
-                            </div>
-                            <input type="text" name="post-input" id="post-input">
-                            <button type="button" id="chooseImg" onclick="chooseFile()"><img src="https://media.discordapp.net/attachments/975385808255201300/975385832355663982/unknown.png" style="width: 50px; height: 50px"></button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-4">
-                        </div>
-                        <div class="col-4">
-                            <input type="submit" value="Post" id="post-submit">
-                        </div>
-                    </div>
-                </form>
-            </div>
--->
-            <div class="post-select">
-                <div class="row">
-                    <div class="col">
-                        <?php
-                        if (!empty($result)) {
-                            if ($result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()) {
 
-                        ?>
-                                    <fieldset id="post-fieldset">
-                                        <p><?php echo $row["username"] ?></p>
-                                        <p><?php echo $row["text_content"] ?></p>
-                                        <img id="post_image" src="images/<?php echo $row["image_content"] ?>">
-                                        <p id="posted_at">Posted at: <?php echo $row["posted_at"] ?></p>
-                                    </fieldset>
-                        <?php
-                                }
-                            } else {
-                                echo "0 results";
-                            }
+            <div class="">
+                <?php
+                if (!empty($result)) {
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                ?>
+                            <div class="container" style="width: 40%;">
+                                <div class="card bg-dark text-white mt-2 mb-2">
+                                    <h2 class="card-title text-left"><?php echo $row["username"] ?></h2>
+                                    <div class="card-body">
+                                        <p class="card-text"><?php echo $row["text_content"] ?></p>
+                                    </div>
+                                    <img id="post_image" src="images/<?php echo $row["image_content"] ?>">
+                                    <div class="text-center">
+                                        <p>Posted at: <?php echo $row["posted_at"] ?></p>
+                                    </div>
+                                </div>
+                            </div>
+                <?php
                         }
-                        ?>
-                    </div>
-                </div>
+                    } else {
+                        echo "0 results";
+                    }
+                }
+                ?>
             </div>
         </div>
     </main>
@@ -197,7 +172,7 @@ if ($stmt = $conn->prepare($sql)) {
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
             © 2022 Copyright:
-            <a class="text-white" href="#">Niggod.com</a>
+            <a class="text-white" href="#">Niggod.cz</a>
         </div>
         <!-- Copyright -->
     </footer>
