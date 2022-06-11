@@ -89,32 +89,30 @@ if ($stmt = $conn->prepare($sql)) {
                 </div>
             </div>
 
-            <div class="">
-                <?php
-                if (!empty($result)) {
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                ?>
-                            <div class="container" style="width: 40%;">
-                                <div class="card bg-dark text-white mt-2 mb-2">
-                                    <h2 class="card-title text-left"><?php echo $row["username"] ?></h2>
-                                    <div class="card-body">
-                                        <p class="card-text"><?php echo $row["text_content"] ?></p>
-                                    </div>
-                                    <img id="post_image" src="images/<?php echo $row["image_content"] ?>">
-                                    <div class="text-center">
-                                        <p>Posted at: <?php echo $row["posted_at"] ?></p>
-                                    </div>
+            <?php
+            if (!empty($result)) {
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+            ?>
+                        <div class="container" style="width: 40%;">
+                            <div class="card bg-dark text-white mt-2 mb-2">
+                                <h2 class="card-title text-left"><?php echo $row["username"] ?></h2>
+                                <div class="card-body">
+                                    <p class="card-text"><?php echo $row["text_content"] ?></p>
+                                </div>
+                                <img id="post_image" src="images/<?php echo $row["image_content"] ?>">
+                                <div class="text-center">
+                                    <p>Posted at: <?php echo $row["posted_at"] ?></p>
                                 </div>
                             </div>
-                <?php
-                        }
-                    } else {
-                        echo "0 results";
+                        </div>
+            <?php
                     }
+                } else {
+                    echo "0 results";
                 }
-                ?>
-            </div>
+            }
+            ?>
         </div>
     </main>
     <footer class="bg-dark text-center text-white" onmousedown='return false;' onselectstart='return false;'>

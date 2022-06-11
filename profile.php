@@ -29,16 +29,17 @@ if ($stmt = $conn->prepare($sql)) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <title>Profile - Niggod</title>
     <link rel="icon" href="img/NiggodRat.ico">
     <link rel="stylesheet" href="css/styles.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
+
 <body>
-<header>
+    <header>
         <nav class="navbar bg-light shadow mb-5 rounded">
             <div class="container-fluid">
                 <!-- Logo -->
@@ -68,40 +69,43 @@ if ($stmt = $conn->prepare($sql)) {
             </div>
         </nav>
     </header>
-<main>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <h1><?php echo $username ?></h1>
-                <p id="profile-register">Registered to Niggod: <?php echo $date ?></p>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1><?php echo $username ?></h1>
+                    <p id="profile-register">Registered to Niggod: <?php echo $date ?></p>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <?php
-                if (!empty($result)) {
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
 
-                            ?>
-                            <fieldset id="post-fieldset">
-                                <p><?php echo $username ?></p>
-                                <p><?php echo $row["text_content"] ?></p>
-                                <img id="post_image" src="images/<?php echo $row["image_content"] ?>">
-                                <p id="posted_at">Posted at: <?php echo $row["posted_at"]?></p>
-                            </fieldset>
-                            <?php
-                        }
-                    } else {
-                        echo "0 results";
+            <?php
+            if (!empty($result)) {
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+
+            ?>
+                        <div class="container" style="width: 40%;">
+                            <div class="card bg-dark text-white mt-2 mb-2">
+                                <h2 class="card-title text-left"><?php echo $username ?></h2>
+                                <div class="card-body">
+                                    <p class="card-text"><?php echo $row["text_content"] ?></p>
+                                </div>
+                                <img src="images/<?php echo $row["image_content"] ?>">
+                                <div class="text-center">
+                                    <p>Posted at: <?php echo $row["posted_at"] ?></p>
+                                </div>
+                            </div>
+                        </div>
+            <?php
                     }
+                } else {
+                    echo "0 results";
                 }
-                ?>
-            </div>
+            }
+            ?>
         </div>
-    </div>
-</main>
-<footer class="bg-dark text-center text-white" onmousedown='return false;' onselectstart='return false;'>
+    </main>
+    <footer class="bg-dark text-center text-white" onmousedown='return false;' onselectstart='return false;'>
         <!-- Grid container -->
         <div class="container p-4 pb-0">
             <!-- Section: Social media -->
@@ -161,4 +165,5 @@ if ($stmt = $conn->prepare($sql)) {
         <!-- Copyright -->
     </footer>
 </body>
+
 </html>
