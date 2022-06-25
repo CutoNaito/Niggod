@@ -70,39 +70,44 @@ if ($stmt = $conn->prepare($sql)) {
         </nav>
     </header>
     <main>
+
         <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h1><?php echo $username ?></h1>
-                    <p id="profile-register">Registered to Niggod: <?php echo $date ?></p>
+                <div class="container position-relative" style="width: 50%;">
+                <img class="position-absolute top-0 end-100 rounded" src="img/mainPfP.jpg" alt="Profile picture"> <!-- absolute profile picture -->
+                    <div class="card bg-dark text-white mt-2 mb-5">
+                        <div class="card-body">
+                            <h1 class="card-title"><?php echo $username ?></h1>
+                            <p id="profile-register">Registered to Niggod: <?php echo $date ?></p>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <?php
-            if (!empty($result)) {
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
+                <?php
+                if (!empty($result)) {
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
 
-            ?>
-                        <div class="container" style="width: 40%;">
-                            <div class="card bg-dark text-white mt-2 mb-2">
-                                <h2 class="card-title text-left"><?php echo $username ?></h2>
-                                <div class="card-body">
-                                    <p class="card-text"><?php echo $row["text_content"] ?></p>
-                                </div>
-                                <img src="images/<?php echo $row["image_content"] ?>">
-                                <div class="text-center">
-                                    <p>Posted at: <?php echo $row["posted_at"] ?></p>
+                ?>
+                            <div class="container position-relative" style="width: 50%;">
+                            <img class="position-absolute top-0 end-100 rounded" src="img/mainPfP.jpg" alt="Profile picture"> <!-- absolute profile picture -->
+                                <div class="card bg-dark text-white mt-2 mb-2">
+                                    <div class="card-body">
+                                        <h2 class="card-title"><?php echo $username ?></h2>
+                                        <p class="card-text"><?php echo $row["text_content"] ?></p>
+                                    </div>
+                                    <img src="images/<?php echo $row["image_content"] ?>">
+                                    <div class="card-footer text-muted text-center">
+                                        <p>Posted at: <?php echo $row["posted_at"] ?></p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-            <?php
+                <?php
+                        }
+                    } else {
+                        echo "0 results";
                     }
-                } else {
-                    echo "0 results";
                 }
-            }
-            ?>
+                ?>
         </div>
     </main>
     <footer class="bg-dark text-center text-white" onmousedown='return false;' onselectstart='return false;'>
