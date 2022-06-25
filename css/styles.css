@@ -18,7 +18,23 @@ div.bg-danger div.card{
 #profile-register{
     color: #00ff00;
 }
-#post_image{
-    max-width: 500px;
-    max-height: 500px;
+
+/* Start Responsible */
+
+@media (min-width: 544px) {  
+  p {font-size:1.5rem;} 
 }
+ 
+@media (min-width: 768px) {  
+  p {font-size:2rem;} 
+}
+ 
+@media (min-width: 992px) { 
+  p {font-size:2.5rem;} 
+}
+ 
+@media (min-width: 1200px) {  
+  p {font-size:3rem;}     
+}
+ 
+/* End Responsible */

@@ -72,42 +72,45 @@ if ($stmt = $conn->prepare($sql)) {
     <main>
 
         <div class="container">
-                <div class="container position-relative" style="width: 50%;">
-                <img class="position-absolute top-0 end-100 rounded" src="img/mainPfP.jpg" alt="Profile picture"> <!-- absolute profile picture -->
-                    <div class="card bg-dark text-white mt-2 mb-5">
-                        <div class="card-body">
-                            <h1 class="card-title"><?php echo $username ?></h1>
-                            <p id="profile-register">Registered to Niggod: <?php echo $date ?></p>
-                        </div>
+            <div class="container position-relative" style="width: 50%;">
+                <img class="position-absolute top-0 end-100 rounded" src="img/defaultPfP.jpg" alt="Profile picture"> <!-- absolute profile picture -->
+                <div class="card bg-dark text-white mt-2 mb-5">
+                    <div class="card-body">
+                        <h1 class="card-title"><?php echo $username ?></h1>
+                        <p id="profile-register">Registered to Niggod: <?php echo $date ?></p>
                     </div>
                 </div>
+            </div>
 
-                <?php
-                if (!empty($result)) {
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-
-                ?>
-                            <div class="container position-relative" style="width: 50%;">
-                            <img class="position-absolute top-0 end-100 rounded" src="img/mainPfP.jpg" alt="Profile picture"> <!-- absolute profile picture -->
-                                <div class="card bg-dark text-white mt-2 mb-2">
-                                    <div class="card-body">
+            <?php
+            if (!empty($result)) {
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+            ?>
+                        <div class="container position-relative" style="width: 50%;">
+                            <a href="#">
+                                <img class="position-absolute top-0 end-100 rounded" src="img/defaultPfP.jpg" alt="Profile picture"> <!-- absolute profile picture -->
+                            </a>
+                            <div class="card bg-dark text-white mt-2 mb-2">
+                                <div class="card-body">
+                                    <a href="#" class="text-decoration-none text-white">
                                         <h2 class="card-title"><?php echo $username ?></h2>
-                                        <p class="card-text"><?php echo $row["text_content"] ?></p>
-                                    </div>
-                                    <img src="images/<?php echo $row["image_content"] ?>">
-                                    <div class="card-footer text-muted text-center">
-                                        <p>Posted at: <?php echo $row["posted_at"] ?></p>
-                                    </div>
+                                    </a>
+                                    <p class="card-text"><?php echo $row["text_content"] ?></p>
+                                </div>
+                                <img src="images/<?php echo $row["image_content"] ?>">
+                                <div class="card-footer text-muted text-center">
+                                    <p>Posted at: <?php echo $row["posted_at"] ?></p>
                                 </div>
                             </div>
-                <?php
-                        }
-                    } else {
-                        echo "0 results";
+                        </div>
+            <?php
                     }
+                } else {
+                    echo "0 results";
                 }
-                ?>
+            }
+            ?>
         </div>
     </main>
     <footer class="bg-dark text-center text-white" onmousedown='return false;' onselectstart='return false;'>

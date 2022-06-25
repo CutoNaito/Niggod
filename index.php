@@ -60,32 +60,34 @@ if ($stmt = $conn->prepare($sql)) {
     </header>
     <main>
         <div class="container">
-            <div class="card bg-dark text-white">
-                <div class="card-body">
-                    <form action="user/post.php" method="post" enctype="multipart/form-data">
-                        <div class="row text-center">
-                            <h2 class="card-title">What's on your mind?</h2>
-                        </div>
-                        <div class="col">
-                            <div class="mb-3 mt-3">
-                                <textarea class="form-control" rows="5" id="comment" name="post-input"></textarea>
+            <div class="container" style="width: 50%;">
+                <div class="card bg-dark text-white">
+                    <div class="card-body">
+                        <form action="user/post.php" method="post" enctype="multipart/form-data">
+                            <div class="row text-center">
+                                <h2 class="card-title">What's on your mind?</h2>
                             </div>
-                            <div style="overflow: hidden; height: 0">
-                                <input type="file" id="fileInput" name="fileInput">
+                            <div class="col">
+                                <div class="mb-3 mt-3">
+                                    <textarea class="form-control" rows="5" id="comment" name="post-input"></textarea>
+                                </div>
+                                <div style="overflow: hidden; height: 0">
+                                    <input type="file" id="fileInput" name="fileInput">
+                                </div>
+                                <button class="btn btn-outline-light" type="button" id="chooseImg" onclick="chooseFile()">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-image" viewBox="0 0 16 16">
+                                        <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                                        <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z" />
+                                    </svg>
+                                </button>
                             </div>
-                            <button class="btn btn-outline-light" type="button" id="chooseImg" onclick="chooseFile()">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-image" viewBox="0 0 16 16">
-                                    <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
-                                    <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z" />
-                                </svg>
-                            </button>
-                        </div>
-                        <div class="row">
-                            <div class="text-center">
-                                <button class="btn btn-outline-light my-2 my-sm-0" type="submit" id="post-submit">Post</button>
+                            <div class="row">
+                                <div class="text-center">
+                                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit" id="post-submit">Post</button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
 
@@ -94,14 +96,19 @@ if ($stmt = $conn->prepare($sql)) {
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
             ?>
-                        <div class="container" style="width: 40%;">
+                        <div class="container position-relative" style="width: 50%;">
+                            <a href="profile.php?username=<?php echo $row["username"] ?>">
+                                <img class="position-absolute top-0 end-100 rounded" src="img/defaultPfP.jpg" alt="Profile picture"> <!-- absolute profile picture -->
+                            </a>
                             <div class="card bg-dark text-white mt-2 mb-2">
-                                <h2 class="card-title text-left"><?php echo $row["username"] ?></h2>
                                 <div class="card-body">
+                                    <a href="profile.php?username=<?php echo $row["username"] ?>" class="text-decoration-none text-white">
+                                        <h2 class="card-title text-left"><?php echo $row["username"] ?></h2>
+                                    </a>
                                     <p class="card-text"><?php echo $row["text_content"] ?></p>
                                 </div>
-                                <img id="post_image" src="images/<?php echo $row["image_content"] ?>">
-                                <div class="text-center">
+                                <img src="images/<?php echo $row["image_content"] ?>">
+                                <div class="card-footer text-muted text-center">
                                     <p>Posted at: <?php echo $row["posted_at"] ?></p>
                                 </div>
                             </div>
