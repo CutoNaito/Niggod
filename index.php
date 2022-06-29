@@ -6,7 +6,7 @@ if (!isset($_SESSION["logged"]) || $_SESSION["logged"] !== true) {
     exit;
 }
 include("connection/config.php");
-$sql = "SELECT text_content, image_content, username, posted_at FROM post INNER JOIN users ON users.id = post.user_id ORDER BY posted_at DESC";
+$sql = "SELECT profile_picture, text_content, image_content, username, posted_at FROM post INNER JOIN users ON users.id = post.user_id ORDER BY posted_at DESC";
 if ($stmt = $conn->prepare($sql)) {
     if ($stmt->execute()) {
         $result = $stmt->get_result();
@@ -98,7 +98,7 @@ if ($stmt = $conn->prepare($sql)) {
             ?>
                         <div class="container position-relative" style="width: 50%;">
                             <a href="profile.php?username=<?php echo $row["username"] ?>">
-                                <img class="position-absolute top-0 end-100 rounded" src="img/defaultPfP.jpg" alt="Profile picture"> <!-- absolute profile picture -->
+                                <img class="position-absolute top-0 end-100 rounded" src="img/<?php echo $row["profile_picture"] ?>" alt="Profile picture"> <!-- absolute profile picture -->
                             </a>
                             <div class="card bg-dark text-white mt-2 mb-2">
                                 <div class="card-body">
