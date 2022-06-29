@@ -70,10 +70,12 @@ if ($stmt = $conn->prepare($sql)) {
         </nav>
     </header>
     <main>
-
         <div class="container">
             <div class="container position-relative" style="width: 50%;">
                 <img class="position-absolute top-0 end-100 rounded" src="img/defaultPfP.jpg" alt="Profile picture"> <!-- absolute profile picture -->
+                <?php if($_GET["username"] == $_SESSION["username"]){?>
+                <a href="user/editprofile.php">Edit</a>
+                <?php } ?>
                 <div class="card bg-dark text-white mt-2 mb-5">
                     <div class="card-body">
                         <h1 class="card-title"><?php echo $username ?></h1>
