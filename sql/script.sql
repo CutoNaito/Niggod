@@ -5,7 +5,8 @@ CREATE TABLE users (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(50) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    profile_picture varchar(500) default "defaultPfP.jpg"
 );
 
 CREATE TABLE post(
@@ -16,6 +17,3 @@ posted_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 user_id int not null,
 constraint user_post_id foreign key (user_id) references users(id)
 );
-
-alter table users
-modify column profile_picture varchar(500) default "defaultPfP.jpg";
