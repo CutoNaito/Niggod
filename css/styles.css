@@ -20,21 +20,24 @@ div.bg-danger div.card{
 }
 
 /* Start Responsible */
+@media (min-width: 320px) {  
+  p {font-size:0.6rem;} 
+}
 
 @media (min-width: 544px) {  
-  p {font-size:1.5rem;} 
+  p {font-size:0.7rem;} 
 }
  
 @media (min-width: 768px) {  
-  p {font-size:2rem;} 
+  p {font-size:0.8rem;} 
 }
- 
+  
 @media (min-width: 992px) { 
-  p {font-size:2.5rem;} 
+  p {font-size:0.9rem;} 
 }
  
 @media (min-width: 1200px) {  
-  p {font-size:3rem;}     
+  p {font-size:1rem;}     
 }
  
 /* End Responsible */
