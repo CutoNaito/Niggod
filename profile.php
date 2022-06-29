@@ -70,12 +70,24 @@ if ($stmt = $conn->prepare($sql)) {
         </nav>
     </header>
     <main>
+
         <div class="container">
+        <div class="card bg-dark text-white positionEditCard" style="width: 20%;">
+            <div class="card-body">
+                <?php if ($_GET["username"] == $_SESSION["username"]) { ?>
+
+                    <a href="user/editprofile.php">
+                        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">
+                            Edit
+                        </button>
+                    </a>
+                <?php } ?>
+            </div>
+        </div>
+
             <div class="container position-relative" style="width: 50%;">
                 <img class="position-absolute top-0 end-100 rounded" src="img/defaultPfP.jpg" alt="Profile picture"> <!-- absolute profile picture -->
-                <?php if($_GET["username"] == $_SESSION["username"]){?>
-                <a href="user/editprofile.php">Edit</a>
-                <?php } ?>
+
                 <div class="card bg-dark text-white mt-2 mb-5">
                     <div class="card-body">
                         <h1 class="card-title"><?php echo $username ?></h1>
@@ -113,6 +125,11 @@ if ($stmt = $conn->prepare($sql)) {
                 }
             }
             ?>
+
+
+
+
+
         </div>
     </main>
     <footer class="bg-dark text-center text-white" onmousedown='return false;' onselectstart='return false;'>

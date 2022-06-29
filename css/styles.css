@@ -1,47 +1,67 @@
+#header_home_img {
+  width: 32px;
+  height: 32px;
+  max-width: 100%;
+}
 
-#header_home_img{
-    width: 32px;
-    height: 32px;
-    max-width: 100%;
+#header_profile_img {
+  width: 32px;
+  height: 32px;
+  max-width: 100%;
 }
-#header_profile_img{
-    width: 32px;
-    height: 32px;
-    max-width: 100%;
-}
+
 .linkForButtons {
-    text-decoration: none !important;
-}
-div.bg-danger div.card{
-    background-color: bisque !important;
-}
-#profile-register{
-    color: #00ff00;
+  text-decoration: none !important;
 }
 
-.marginZero{
+div.bg-danger div.card {
+  background-color: bisque !important;
+}
+
+#profile-register {
+  color: #00ff00;
+}
+
+.marginZero {
   margin: 0;
 }
 
-/* Start Responsible */
-@media (min-width: 320px) {  
-  p {font-size:0.6rem;} 
+.positionEditCard {
+display: block;
+right: 0px;
+float: right;
+position: relative;
 }
 
-@media (min-width: 544px) {  
-  p {font-size:0.7rem;} 
+/* Start Responsible */
+@media (min-width: 320px) {
+  p {
+    font-size: 0.6rem;
+  }
 }
- 
-@media (min-width: 768px) {  
-  p {font-size:0.8rem;} 
+
+@media (min-width: 544px) {
+  p {
+    font-size: 0.7rem;
+  }
 }
-  
-@media (min-width: 992px) { 
-  p {font-size:0.9rem;} 
+
+@media (min-width: 768px) {
+  p {
+    font-size: 0.8rem;
+  }
 }
- 
-@media (min-width: 1200px) {  
-  p {font-size:1rem;}     
+
+@media (min-width: 992px) {
+  p {
+    font-size: 0.9rem;
+  }
 }
- 
+
+@media (min-width: 1200px) {
+  p {
+    font-size: 1rem;
+  }
+}
+
 /* End Responsible */
