@@ -19,6 +19,10 @@ div.bg-danger div.card{
     color: #00ff00;
 }
 
+.marginZero{
+  margin: 0;
+}
+
 /* Start Responsible */
 @media (min-width: 320px) {  
   p {font-size:0.6rem;} 

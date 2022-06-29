@@ -109,7 +109,7 @@ if ($stmt = $conn->prepare($sql)) {
                                 </div>
                                 <img src="images/<?php echo $row["image_content"] ?>">
                                 <div class="card-footer text-muted text-center">
-                                    <p>Posted at: <?php echo $row["posted_at"] ?></p>
+                                    <p class="marginZero">Posted at: <?php echo $row["posted_at"] ?></p>
                                 </div>
                             </div>
                         </div>
