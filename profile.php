@@ -7,11 +7,11 @@ if (!isset($_SESSION["logged"]) || $_SESSION["logged"] !== true) {
 }
 include("connection/config.php");
 $username_var = trim($_GET["username"]);
-$sql = "SELECT id, username, created_at FROM users WHERE username = ?";
+$sql = "SELECT id, username, created_at, profile_picture FROM users WHERE username = ?";
 if ($stmt = $conn->prepare($sql)) {
     $stmt->bind_param('s', $username_var);
     if ($stmt->execute()) {
-        $stmt->bind_result($id, $username, $date);
+        $stmt->bind_result($id, $username, $date, $profile_picture);
         $stmt->fetch();
         $stmt->close();
     }
@@ -86,8 +86,7 @@ if ($stmt = $conn->prepare($sql)) {
         </div>
 
             <div class="container position-relative" style="width: 50%;">
-                <img class="position-absolute top-0 end-100 rounded" src="img/defaultPfP.jpg" alt="Profile picture"> <!-- absolute profile picture -->
-
+                <img class="position-absolute top-0 end-100 rounded" src="img/<?php echo $profile_picture ?>" alt="Profile picture"> <!-- absolute profile picture -->
                 <div class="card bg-dark text-white mt-2 mb-5">
                     <div class="card-body">
                         <h1 class="card-title"><?php echo $username ?></h1>
@@ -103,7 +102,7 @@ if ($stmt = $conn->prepare($sql)) {
             ?>
                         <div class="container position-relative" style="width: 50%;">
                             <a href="#">
-                                <img class="position-absolute top-0 end-100 rounded" src="img/defaultPfP.jpg" alt="Profile picture"> <!-- absolute profile picture -->
+                                <img class="position-absolute top-0 end-100 rounded" src="img/<?php echo $profile_picture ?>" alt="Profile picture"> <!-- absolute profile picture -->
                             </a>
                             <div class="card bg-dark text-white mt-2 mb-2">
                                 <div class="card-body">
