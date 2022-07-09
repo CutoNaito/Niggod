@@ -72,24 +72,23 @@ if ($stmt = $conn->prepare($sql)) {
     <main>
 
         <div class="container">
-        <div class="card bg-dark text-white positionEditCard" style="width: 20%;">
-            <div class="card-body">
-                <?php if ($_GET["username"] == $_SESSION["username"]) { ?>
-
-                    <a href="user/editprofile.php">
-                        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">
-                            Edit
-                        </button>
-                    </a>
-                <?php } ?>
-            </div>
-        </div>
-
+            <?php if ($_GET["username"] == $_SESSION["username"]) { ?>
+                <div class="card bg-dark text-white positionEditCard" style="width: 20%;">
+                    <div class="card-body">
+                        <a href="user/editprofile.php">
+                            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">
+                                Edit
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            <?php } ?>
             <div class="container position-relative" style="width: 50%;">
-                <img class="position-absolute top-0 end-100 rounded" src="img/<?php echo $profile_picture ?>" alt="Profile picture"> <!-- absolute profile picture -->
+                <img class="position-absolute top-0 end-100 rounded" style="height:64px;" src="img/<?php echo $profile_picture ?>" alt="Profile picture"> <!-- absolute profile picture -->
                 <div class="card bg-dark text-white mt-2 mb-5">
                     <div class="card-body">
                         <h1 class="card-title"><?php echo $username ?></h1>
+                        <p class="card-text"> </p>
                         <p id="profile-register">Registered to Niggod: <?php echo $date ?></p>
                     </div>
                 </div>
@@ -102,7 +101,7 @@ if ($stmt = $conn->prepare($sql)) {
             ?>
                         <div class="container position-relative" style="width: 50%;">
                             <a href="#">
-                                <img class="position-absolute top-0 end-100 rounded" src="img/<?php echo $profile_picture ?>" alt="Profile picture"> <!-- absolute profile picture -->
+                                <img class="position-absolute top-0 end-100 rounded" style="height:64px;" src="img/<?php echo $profile_picture ?>" alt="Profile picture"> <!-- absolute profile picture -->
                             </a>
                             <div class="card bg-dark text-white mt-2 mb-2">
                                 <div class="card-body">

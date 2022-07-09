@@ -98,7 +98,7 @@ if ($stmt = $conn->prepare($sql)) {
             ?>
                         <div class="container position-relative" style="width: 50%;">
                             <a href="profile.php?username=<?php echo $row["username"] ?>">
-                                <img class="position-absolute top-0 end-100 rounded" src="img/<?php echo $row["profile_picture"] ?>" alt="Profile picture"> <!-- absolute profile picture -->
+                                <img class="position-absolute top-0 end-100 rounded" style="height:64px;" src="img/<?php echo $row["profile_picture"] ?>" alt="Profile picture"> <!-- absolute profile picture -->
                             </a>
                             <div class="card bg-dark text-white mt-2 mb-2">
                                 <div class="card-body">
