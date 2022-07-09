@@ -7,11 +7,11 @@ if (!isset($_SESSION["logged"]) || $_SESSION["logged"] !== true) {
 }
 include("connection/config.php");
 $username_var = trim($_GET["username"]);
-$sql = "SELECT id, username, created_at, profile_picture FROM users WHERE username = ?";
+$sql = "SELECT id, username, created_at, profile_picture, bio FROM users WHERE username = ?";
 if ($stmt = $conn->prepare($sql)) {
     $stmt->bind_param('s', $username_var);
     if ($stmt->execute()) {
-        $stmt->bind_result($id, $username, $date, $profile_picture);
+        $stmt->bind_result($id, $username, $date, $profile_picture, $bio);
         $stmt->fetch();
         $stmt->close();
     }
@@ -90,6 +90,7 @@ if ($stmt = $conn->prepare($sql)) {
                         <h1 class="card-title"><?php echo $username ?></h1>
                         <p class="card-text"> </p>
                         <p id="profile-register">Registered to Niggod: <?php echo $date ?></p>
+                        <p id="bio"><?php echo $bio ?></p>
                     </div>
                 </div>
             </div>
