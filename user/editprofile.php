@@ -86,7 +86,7 @@ if ($stmt = $conn->prepare($sql)) {
 
                         <div class="mb-3">
                             <div style="overflow: hidden; height: 0">
-                                <input type="file" id="fileInput" name="fileInput" accept=".png, .jpg, .jpeg">
+                                <input type="file" id="fileInput" name="fileInput" accept=".png, .jpg, .jpeg" value="../img/<?php echo $profile_picture ?>">
                             </div>
                             <button class="btn btn-outline-light" type="button" id="chooseImg" onclick="chooseFile()">
                                 <img src="../img/<?php echo $profile_picture ?>" style="height:64px;">
