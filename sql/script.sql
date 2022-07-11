@@ -18,3 +18,11 @@ posted_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 user_id int not null,
 constraint user_post_id foreign key (user_id) references users(id)
 );
+
+CREATE TABLE friend(
+id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+user1 int not null,
+user2 int not null,
+user1_confirm bit,
+user2_confirm bit
+);
