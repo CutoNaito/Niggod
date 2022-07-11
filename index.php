@@ -125,7 +125,7 @@ function checkIfFriend($username){
             if (!empty($result)) {
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
-                        if(checkIfFriend($row["username"])) {
+                        if(checkIfFriend($row["username"]) || $row["username"] == $_SESSION["username"]) {
             ?>
                         <div class="container position-relative" style="width: 50%;">
                             <a href="profile.php?username=<?php echo $row["username"] ?>">
