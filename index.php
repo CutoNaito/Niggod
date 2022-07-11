@@ -12,6 +12,36 @@ if ($stmt = $conn->prepare($sql)) {
         $result = $stmt->get_result();
     }
 }
+
+function checkIfFriend($username){
+    global $conn;
+    $sql = "SELECT id FROM users WHERE username = ?";
+    if ($stmt = $conn->prepare($sql)) {
+        $stmt->bind_param('s', $username);
+        if ($stmt->execute()) {
+            $result_func = $stmt->get_result();
+            if($row_func = $result_func->fetch_assoc()){
+                $user_id = $row_func["id"];
+            }
+        }
+    }
+    $sql = "SELECT * FROM friend WHERE user1 = ? AND user2 = ? OR user1 = ? AND user2 = ?";
+    if ($stmt = $conn->prepare($sql)) {
+        $stmt->bind_param('iiii', $_SESSION["id"], $user_id, $user_id, $_SESSION["id"]);
+        if ($stmt->execute()) {
+            $result_func = $stmt->get_result();
+            if($row_func = $result_func->fetch_assoc()){
+                if($row_func["user1_confirm"] == "1" && $row_func["user2_confirm"] == "1"){
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -95,6 +125,7 @@ if ($stmt = $conn->prepare($sql)) {
             if (!empty($result)) {
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
+                        if(checkIfFriend($row["username"])) {
             ?>
                         <div class="container position-relative" style="width: 50%;">
                             <a href="profile.php?username=<?php echo $row["username"] ?>">
@@ -114,6 +145,7 @@ if ($stmt = $conn->prepare($sql)) {
                             </div>
                         </div>
             <?php
+                    }
                     }
                 } else {
                     echo "0 results";
