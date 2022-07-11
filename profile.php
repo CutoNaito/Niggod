@@ -18,13 +18,6 @@ if ($stmt = $conn->prepare($sql)) {
 } else {
     echo "Something went wrong, please try again later";
 }
-$sql = "SELECT * FROM post WHERE user_id = ? ORDER BY posted_at DESC";
-if ($stmt = $conn->prepare($sql)) {
-    $stmt->bind_param('i', $id);
-    if ($stmt->execute()) {
-        $result = $stmt->get_result();
-    }
-}
 $sql = "SELECT * FROM friend WHERE user1 = ? AND user2 = ? OR user1 = ? AND user2 = ?";
 if ($stmt = $conn->prepare($sql)) {
     $stmt->bind_param('iiii', $_SESSION["id"], $id, $id, $_SESSION["id"]);
@@ -51,6 +44,13 @@ if ($stmt = $conn->prepare($sql)) {
         $friend_caption = "Add Friend";
     }
 }
+}
+$sql = "SELECT * FROM post WHERE user_id = ? ORDER BY posted_at DESC";
+if ($stmt = $conn->prepare($sql)) {
+    $stmt->bind_param('i', $id);
+    if ($stmt->execute()) {
+        $result = $stmt->get_result();
+    }
 }
 ?>
 <!DOCTYPE html>
