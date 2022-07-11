@@ -1,3 +1,136 @@
 .linkForButtons {
     text-decoration: none !important;
 }
+
+/* Start Responsible */
+@media (min-width: 320px) {
+    p {
+      font-size: 0.6rem;
+    }
+  
+    .iconSize1 {
+      width: 16px;
+      height: 16px;
+    }
+  
+    .iconSize2 {
+      width: 16px;
+      height: 16px;
+    }
+  
+    .iconSize3 {
+      width: 16px;
+      height: 16px;
+    }
+  
+    .iconSize4 {
+      width: 16px;
+      height: 16px;
+    }
+  }
+  
+  @media (min-width: 544px) {
+    p {
+      font-size: 0.7rem;
+    }
+  
+    .iconSize1 {
+      width: 16px;
+      height: 16px;
+    }
+  
+    .iconSize2 {
+      width: 16px;
+      height: 16px;
+    }
+  
+    .iconSize3 {
+      width: 16px;
+      height: 16px;
+    }
+  
+    .iconSize4 {
+      width: 16px;
+      height: 16px;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    p {
+      font-size: 0.8rem;
+    }
+  
+    .iconSize1 {
+      width: 26px;
+      height: 26px;
+    }
+  
+    .iconSize2 {
+      width: 26px;
+      height: 26px;
+    }
+  
+    .iconSize3 {
+      width: 26px;
+      height: 26px;
+    }
+  
+    .iconSize4 {
+      width: 36px;
+      height: 26px;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    p {
+      font-size: 0.9rem;
+    }
+  
+    .iconSize1 {
+      width: 26px;
+      height: 26px;
+    }
+  
+    .iconSize2 {
+      width: 26px;
+      height: 26px;
+    }
+  
+    .iconSize3 {
+      width: 36px;
+      height: 36px;
+    }
+  
+    .iconSize4 {
+      width: 36px;
+      height: 36px;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    p {
+      font-size: 1rem;
+    }
+  
+    .iconSize1 {
+      width: 16px;
+      height: 16px;
+    }
+  
+    .iconSize2 {
+      width: 26px;
+      height: 26px;
+    }
+  
+    .iconSize3 {
+      width: 36px;
+      height: 36px;
+    }
+  
+    .iconSize4 {
+      width: 46px;
+      height: 46px;
+    }
+  }
+  
+  /* End Responsible */
