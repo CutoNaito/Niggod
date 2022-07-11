@@ -1,7 +1,7 @@
 <?php
 include("connection/config.php");
 $uservar = $_GET["username"];
-$sql = "SELECT username FROM users WHERE username LIKE '%$uservar%'";
+$sql = "SELECT username, bio FROM users WHERE username LIKE '%$uservar%'";
 if ($stmt = $conn->prepare($sql)) {
     if ($stmt = $conn->prepare($sql)) {
         if ($stmt->execute()) {
@@ -68,7 +68,7 @@ if ($stmt = $conn->prepare($sql)) {
                                 <div class="card">
                                     <div class="card-body">
                                         <h5 class="card-title"><?php echo $row["username"] ?></h5>
-                                        <p class="card-text">About me...</p>
+                                        <p class="card-text"><?php echo $row["bio"]?></p>
                                         <a href="profile.php?username=<?php echo $row["username"] ?>" class="btn btn-secondary">View</a>
                                     </div>
                                 </div>
