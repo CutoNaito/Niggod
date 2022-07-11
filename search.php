@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("connection/config.php");
 $uservar = $_GET["username"];
 $sql = "SELECT username, bio FROM users WHERE username LIKE '%$uservar%'";
