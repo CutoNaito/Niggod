@@ -16,10 +16,21 @@ if (isset($_SESSION["logged"]) && $_SESSION["logged"] === true) {
     <link rel="stylesheet" href="css/welcome.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <style>
-        main {
-            background-image: url("img/lsk.gif");
-            background-size: cover;
-            height: 1000px;
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: auto;
+        }
+
+        .box img {
+            max-width: 100%;
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
         }
     </style>
 </head>
@@ -49,6 +60,9 @@ if (isset($_SESSION["logged"]) && $_SESSION["logged"] === true) {
         </nav>
     </header>
     <main>
+        <div class="box">
+            <img src="img/lsk.gif" alt="">
+        </div>
     </main>
     <footer class="bg-dark text-center text-white" onmousedown='return false;' onselectstart='return false;'>
         <!-- Grid container -->
@@ -104,4 +118,5 @@ if (isset($_SESSION["logged"]) && $_SESSION["logged"] === true) {
         <!-- Copyright -->
     </footer>
 </body>
+
 </html>
