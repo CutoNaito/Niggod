@@ -1,0 +1,20 @@
+
+.profile-pic {
+    --bs-icon-size: .75rem;
+    display: flex;
+    flex-shrink: 0;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--bs-icon-size);
+    width: calc(var(--bs-icon-size) * 2);
+    height: calc(var(--bs-icon-size) * 2);
+    color: var(--bs-primary);
+  }
+  
+  .pic-radius {
+    border-radius: .5rem;
+  }
+  
+  .pic-radius-p {
+    border-radius: 50%;
+  }
