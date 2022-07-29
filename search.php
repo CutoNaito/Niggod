@@ -41,7 +41,7 @@ if ($stmt = $conn->prepare($sql)) {
                                 <div class="card">
                                     <div class="card-body p-4">
                                         <div class="profile-pic pic-radius pic-radius-p d-flex justify-content-center align-items-center d-inline-block mb-3">
-                                            <img style="height:64px; width:64px;" src="img/<?php echo $profile_picture ?>" alt="Profile picture">
+                                            <img style="height:64px; width:64px;" src="img/<?php echo $row["profile_picture"] ?>" alt="Profile picture">
                                         </div>
                                         <h5 class="card-title"><?php echo $row["username"] ?></h5>
                                         <p class="card-text"><?php echo $row["bio"] ?></p>
