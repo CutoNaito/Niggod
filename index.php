@@ -13,15 +13,14 @@ if ($stmt = $conn->prepare($sql)) {
     }
 }
 
-function checkIfFriend($username)
-{
+function checkIfFriend($username){
     global $conn;
     $sql = "SELECT id FROM users WHERE username = ?";
     if ($stmt = $conn->prepare($sql)) {
         $stmt->bind_param('s', $username);
         if ($stmt->execute()) {
             $result_func = $stmt->get_result();
-            if ($row_func = $result_func->fetch_assoc()) {
+            if($row_func = $result_func->fetch_assoc()){
                 $user_id = $row_func["id"];
             }
         }
@@ -31,8 +30,8 @@ function checkIfFriend($username)
         $stmt->bind_param('iiii', $_SESSION["id"], $user_id, $user_id, $_SESSION["id"]);
         if ($stmt->execute()) {
             $result_func = $stmt->get_result();
-            if ($row_func = $result_func->fetch_assoc()) {
-                if ($row_func["user1_confirm"] == "1" && $row_func["user2_confirm"] == "1") {
+            if($row_func = $result_func->fetch_assoc()){
+                if($row_func["user1_confirm"] == "1" && $row_func["user2_confirm"] == "1"){
                     return true;
                 } else {
                     return false;
@@ -97,34 +96,31 @@ function checkIfFriend($username)
             if (!empty($result)) {
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
-                        if (checkIfFriend($row["username"]) || $row["username"] == $_SESSION["username"]) {
+                        if(checkIfFriend($row["username"]) || $row["username"] == $_SESSION["username"]) {
 
-                            if ($row["image_content"] != "" || $row["text_content"] != "") {
+                        
             ?>
-                                <div class="container position-relative" style="width: 50%;">
-                                    <a href="profile.php?username=<?php echo $row["username"] ?>">
-                                        <img class="position-absolute top-0 end-100 rounded" style="height:64px;" src="img/<?php echo $row["profile_picture"] ?>" alt="Profile picture"> <!-- absolute profile picture -->
+                        <div class="container position-relative" style="width: 50%;">
+                            <a href="profile.php?username=<?php echo $row["username"] ?>">
+                                <img class="position-absolute top-0 end-100 rounded" style="height:64px;" src="img/<?php echo $row["profile_picture"] ?>" alt="Profile picture"> <!-- absolute profile picture -->
+                            </a>
+                            <div class="card bg-dark text-white mt-2 mb-2">
+                                <div class="card-body">
+                                    <a href="profile.php?username=<?php echo $row["username"] ?>" class="text-decoration-none text-white">
+                                        <h2 class="card-title text-left"><?php echo $row["username"] ?></h2>
                                     </a>
-                                    <div class="card bg-dark text-white mt-2 mb-2">
-                                        <div class="card-body">
-                                            <a href="profile.php?username=<?php echo $row["username"] ?>" class="text-decoration-none text-white">
-                                                <h2 class="card-title text-left"><?php echo $row["username"] ?></h2>
-                                            </a>
-                                            <p class="card-text"><?php echo $row["text_content"] ?></p>
-                                        </div>
-                                        <?php if($row["image_content"] != "") { ?>
-                                        <img src="images/<?php echo $row["image_content"] ?>">
-                                        <?php } ?>
-                                        <div class="card-footer text-muted text-center">
-                                            <p class="marginZero">Posted at: <?php echo $row["posted_at"] ?></p>
-                                        </div>
-                                    </div>
+                                    <p class="card-text"><?php echo $row["text_content"] ?></p>
                                 </div>
+                                <?php if($row["image_content"] != "") { ?>
+                                <img src="images/<?php echo $row["image_content"] ?>">
+                                <?php } ?>
+                                <div class="card-footer text-muted text-center">
+                                    <p class="marginZero">Posted at: <?php echo $row["posted_at"] ?></p>
+                                </div>
+                            </div>
+                        </div>
             <?php
-                            } else {
-                                echo "";
-                            }
-                        }
+                    }
                     }
                 } else {
                     echo "0 results";
