@@ -33,6 +33,19 @@ div.bg-danger div.card {
   position: relative;
 }
 
+.positionPI{
+  display: block;
+  left: -60px;
+  float: left;
+  position: relative;
+  height:64px;
+}
+
+.card-size{
+width: 50% !important;
+}
+
+
 /* start icons in footer */
 .iconSize1,
 .iconSize2,
@@ -171,6 +184,44 @@ div.bg-danger div.card {
     width: 46px;
     height: 46px;
   }
+}
+
+@media screen and (max-width: 768px) {
+
+  .card-size{
+    width: 90% !important;
+    }
+
+  .positionPI{
+    display: block;
+    top: 6px;
+    left: 395px;
+    float: left;
+    position: absolute;
+    height:48px;
+    z-index: 1;
+  }
+
+  .positionEditCard {
+    display: block;
+    right: -20px;
+    float: right;
+    position: relative;
+  }
+
+}
+
+@media screen and (max-width: 544px) {
+  .positionPI{
+    display: block;
+    top: 6px;
+    left: 72%;
+    float: left;
+    position: absolute;
+    height:48px;
+    z-index: 1;
+  }
+
 }
 
 /* End Responsible */

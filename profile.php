@@ -96,8 +96,8 @@ if ($stmt = $conn->prepare($sql)) {
             </div>
         </div>
         <?php } ?>
-        <div class="container position-relative" style="width: 50%;">
-            <img class="position-absolute top-0 end-100 rounded" style="height:64px;"
+        <div class="container position-relative card-size">
+            <img class="position-absolute positionPI rounded"
                  src="img/<?php echo $profile_picture ?>" alt="Profile picture"> <!-- absolute profile picture -->
             <div class="card bg-dark text-white mt-2 mb-5">
                 <div class="card-body">
@@ -113,9 +113,9 @@ if ($stmt = $conn->prepare($sql)) {
         if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
         ?>
-        <div class="container position-relative" style="width: 50%;">
+        <div class="container position-relative card-size">
             <a href="#">
-                <img class="position-absolute top-0 end-100 rounded" style="height:64px;"
+                <img class="position-absolute positionPI rounded"
                      src="img/<?php echo $profile_picture ?>" alt="Profile picture">
                 <!-- absolute profile picture -->
             </a>
