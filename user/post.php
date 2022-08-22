@@ -25,21 +25,24 @@ $target = explode('/images/', $target_file);
 $sql = "SELECT id FROM users WHERE username = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $_SESSION["username"]);
-if($stmt->execute()){
+if($stmt->execute()) {
     $result = $stmt->get_result();
-    if($row = $result->fetch_assoc()){
+    if ($row = $result->fetch_assoc()) {
         $user_id = $row["id"];
     }
-
-    $sql = "INSERT INTO post (text_content, image_content, user_id) values (?, ?, ?)";
-    $stmt->prepare($sql);
-    $stmt->bind_param("ssi", $_POST["post-input"], $target[1], $user_id);
-    if($stmt->execute()){
+    if ($_POST["post-input"] != "" || $target[1] != "") {
+        $sql = "INSERT INTO post (text_content, image_content, user_id) values (?, ?, ?)";
+        $stmt->prepare($sql);
+        $stmt->bind_param("ssi", $_POST["post-input"], $target[1], $user_id);
+        if ($stmt->execute()) {
+            header("location: ../index.php");
+        } else {
+            echo "Something went wrong.";
+        }
+    } else {
         header("location: ../index.php");
-    } else{
-        echo "Something went wrong.";
     }
-} else{
+} else {
     echo "Something went wrong.";
 }
 ?>
