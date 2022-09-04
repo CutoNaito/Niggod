@@ -118,7 +118,7 @@ if ($stmt = $conn->prepare($sql)) {
                         <div class="container card-size">
                             <div class="position-relative">
                                 <a href="#">
-                                    <img class="position-absolute positionPI csPI rounded" src="img/<?php echo $profile_picture ?>" alt="Profile picture">
+                                    <img width="64" height="64" class="position-absolute positionPI csPI rounded" src="img/<?php echo $profile_picture ?>" alt="Profile picture">
                                     <!-- absolute profile picture -->
                                 </a>
                             </div>

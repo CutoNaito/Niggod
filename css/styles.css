@@ -46,9 +46,9 @@ div.bg-danger div.card {
 }
 
 .positionPI {
-
   left: -75px;
   height: 64px;
+  width: 64px;
 }
 
 .card-size {
@@ -215,6 +215,7 @@ div.bg-danger div.card {
     right:10px;
     position: absolute;
     height: 48px;
+    width: 48px;
     z-index: 1;
   }
 
