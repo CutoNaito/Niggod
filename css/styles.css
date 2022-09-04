@@ -26,6 +26,18 @@ div.bg-danger div.card {
   margin: 0;
 }
 
+.searchPfP{
+  height:64px; 
+  width:64px;
+  right: -15px;
+  top: -15px;
+  border-radius: 3px;
+}
+
+.searchTXT{
+  line-height: 1.6;
+}
+
 .positionEditCard {
   display: block;
   right: 0px;

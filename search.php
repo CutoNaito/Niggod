@@ -40,11 +40,14 @@ if ($stmt = $conn->prepare($sql)) {
                             <div class="col">
                                 <div class="card">
                                     <div class="card-body p-4">
-                                        <div class="profile-pic pic-radius pic-radius-p d-flex justify-content-center align-items-center d-inline-block mb-3">
-                                            <img style="height:64px; width:64px;" src="img/<?php echo $row["profile_picture"] ?>" alt="Profile picture">
+                                        <!--div class="pic-radius-p d-flex justify-content-center align-items-center d-inline-block mb-3">-->
+                                        <div class="position-relative">
+                                            <a href="profile.php?username=<?php echo $row["username"] ?>">
+                                                <img class="searchPfP position-absolute" src="img/<?php echo $row["profile_picture"] ?>" alt="Profile picture">
+                                            </a>
                                         </div>
-                                        <h5 class="card-title"><?php echo $row["username"] ?></h5>
-                                        <p class="card-text"><?php echo $row["bio"] ?></p>
+                                        <h2 class="card-title"><?php echo $row["username"] ?></h2>
+                                        <p class="card-text mt-4"><?php echo $row["bio"] ?></p>
                                         <a href="profile.php?username=<?php echo $row["username"] ?>" class="btn btn-secondary">View</a>
                                     </div>
                                 </div>
@@ -56,7 +59,6 @@ if ($stmt = $conn->prepare($sql)) {
                     }
                 }
                 ?>
-
             </div>
         </div>
     </main>
