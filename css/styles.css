@@ -46,7 +46,7 @@ div.bg-danger div.card {
 }
 
 .positionPI {
-  left: -75px;
+  left: -72px;
   height: 64px;
   width: 64px;
 }
@@ -212,7 +212,7 @@ div.bg-danger div.card {
   .positionPI.csPI {
     top: 6px;
     left:auto;
-    right:10px;
+    right:8px;
     position: absolute;
     height: 48px;
     width: 48px;
