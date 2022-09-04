@@ -2,7 +2,7 @@
     <nav class="navbar bg-light shadow mb-5 rounded">
         <div class="container-fluid">
             <!-- Logo -->
-            <a href="#" onmousedown='return false;' onselectstart='return false;'>
+            <a href="index.php" onmousedown='return false;' onselectstart='return false;'>
                 <img src="img/logo.png" alt="" width="180" height="70" class="d-inline-block align-text-top">
             </a>
             <!-- Search -->

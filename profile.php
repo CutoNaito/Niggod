@@ -126,7 +126,9 @@ if ($stmt = $conn->prepare($sql)) {
                     </a>
                     <p class="card-text"><?php echo $row["text_content"] ?></p>
                 </div>
+                <?php if($row["image_content"] != "") { ?>
                 <img src="images/<?php echo $row["image_content"] ?>">
+                <?php } ?>
                 <div class="card-footer text-muted text-center">
                     <p class="marginZero">Posted at: <?php echo $row["posted_at"] ?></p>
                 </div>

@@ -211,11 +211,11 @@ width: 50% !important;
 
 }
 
-@media screen and (max-width: 544px) {
+@media screen and (max-width: 554px) {
   .positionPI{
     display: block;
     top: 6px;
-    left: 72%;
+    left: 70%;
     float: left;
     position: absolute;
     height:48px;
