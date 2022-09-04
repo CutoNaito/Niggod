@@ -26,15 +26,15 @@ div.bg-danger div.card {
   margin: 0;
 }
 
-.searchPfP{
-  height:64px; 
-  width:64px;
+.searchPfP {
+  height: 64px;
+  width: 64px;
   right: -15px;
   top: -15px;
   border-radius: 3px;
 }
 
-.searchTXT{
+.searchTXT {
   line-height: 1.6;
 }
 
@@ -45,16 +45,14 @@ div.bg-danger div.card {
   position: relative;
 }
 
-.positionPI{
-  display: block;
-  left: -60px;
-  float: left;
-  position: relative;
-  height:64px;
+.positionPI {
+
+  left: -75px;
+  height: 64px;
 }
 
-.card-size{
-width: 50% !important;
+.card-size {
+  width: 50% !important;
 }
 
 
@@ -65,6 +63,7 @@ width: 50% !important;
 .iconSize4 {
   display: inline-block;
 }
+
 /* end icons in footer */
 
 /* Start Responsible */
@@ -200,18 +199,8 @@ width: 50% !important;
 
 @media screen and (max-width: 768px) {
 
-  .card-size{
+  .card-size {
     width: 90% !important;
-    }
-
-  .positionPI{
-    display: block;
-    top: 6px;
-    left: 395px;
-    float: left;
-    position: absolute;
-    height:48px;
-    z-index: 1;
   }
 
   .positionEditCard {
@@ -220,17 +209,12 @@ width: 50% !important;
     float: right;
     position: relative;
   }
-
-}
-
-@media screen and (max-width: 554px) {
-  .positionPI{
-    display: block;
+  .positionPI.csPI {
     top: 6px;
-    left: 70%;
-    float: left;
+    left:auto;
+    right:10px;
     position: absolute;
-    height:48px;
+    height: 48px;
     z-index: 1;
   }
 
