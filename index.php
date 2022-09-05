@@ -7,7 +7,7 @@ if (!isset($_SESSION["logged"]) || $_SESSION["logged"] !== true) {
     exit;
 }
 include("connection/config.php");
-$sql = "SELECT * FROM post INNER JOIN users ON users.id = post.user_id ORDER BY posted_at DESC";
+$sql = "SELECT post.id as id_post, users.id as id_users, image_content, text_content, username, profile_picture, posted_at, like_count FROM post INNER JOIN users ON users.id = post.user_id ORDER BY posted_at DESC";
 if ($stmt = $conn->prepare($sql)) {
     if ($stmt->execute()) {
         $result = $stmt->get_result();
@@ -105,7 +105,7 @@ function checkIfFriend($username)
             ?>
                             <div class="container card-size">
                                 <div class="position-relative">
-                                    <a href="./user/like.php?postId=<?php echo $row["id"] ?>">
+                                    <a href="./user/like.php?postId=<?php echo $row["id_post"] ?>">
                                         <i class="bi bi-fire"></i>
                                         <p><?php echo $row["like_count"] ?></p>
                                     </a>

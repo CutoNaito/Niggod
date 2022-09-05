@@ -37,3 +37,6 @@ reposted bool,
 constraint post_interactions_user_id foreign key (user_id) references users(id),
 constraint post_interactions_post_id foreign key (post_id) references post(id)
 );
+
+SELECT * from post_interactions;
+SELECT * from post;

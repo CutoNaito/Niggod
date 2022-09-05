@@ -15,7 +15,7 @@ if ($stmt = $conn->prepare($sql)) {
         $result = $stmt->get_result();
         $stmt->close();
 
-        if ($row = $result->fetch_assoc())
+        if ($result->fetch_assoc())
         {
             if (checkLike($post_id, $user_id)) {
                 unlike($post_id, $user_id);
