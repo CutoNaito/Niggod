@@ -106,10 +106,6 @@ function checkIfFriend($username)
             ?>
                             <div class="container card-size">
                                 <div class="position-relative">
-                                    <button type="button" id="like<?php echo $row["id_post"] ?>" onclick="likeFunc(<?php echo $row["id_post"] ?>, <?php echo $_SESSION["id"] ?>)">
-                                        <i class="bi bi-fire"></i>
-                                        <?php echo $row["like_count"] ?>
-                                    </button>
                                     <a href="profile.php?username=<?php echo $row["username"] ?>">
                                         <img class="position-absolute positionPI csPI rounded" src="img/<?php echo $row["profile_picture"] ?>" alt="Profile picture"> <!-- absolute profile picture -->
                                     </a>
@@ -134,12 +130,10 @@ function checkIfFriend($username)
                                     <div class="card-footer text-muted text-center">
                                         <div class="position-relative">
                                             <div class="position-absolute positionLike">
-                                                <span class="rounded-pill spanPill">
-                                                    <a href="./user/like.php?postId=<?php echo $row["id"] ?>">
-                                                        <i class="bi bi-fire"></i>
-                                                        <i><?php echo $row["like_count"] ?></i>
-                                                    </a>
-                                                </span>
+                                                <button class="rounded-pill" type="button" id="like<?php echo $row["id_post"] ?>" onclick="likeFunc(<?php echo $row["id_post"] ?>, <?php echo $_SESSION["id"] ?>)">
+                                                    <i class="bi bi-fire"></i>
+                                                    <?php echo $row["like_count"] ?>
+                                                </button>
                                             </div>
                                         </div>
                                         <p class="marginZero">Posted at: <?php echo $row["posted_at"] ?></p>

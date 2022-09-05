@@ -158,10 +158,10 @@ function checkIfFriend($username)
             ?>
                         <div class="container card-size">
                             <div class="position-relative">
-                            <button type="button" id="like<?php echo $row["id"] ?>" onclick="likeFunc(<?php echo $row["id"] ?>, <?php echo $_SESSION["id"] ?>)">
-                            <i class="bi bi-fire"></i>
-                            <?php echo $row["like_count"] ?>
-                        </button>
+                                <button type="button" id="like<?php echo $row["id"] ?>" onclick="likeFunc(<?php echo $row["id"] ?>, <?php echo $_SESSION["id"] ?>)">
+                                    <i class="bi bi-fire"></i>
+                                    <?php echo $row["like_count"] ?>
+                                </button>
                                 <a href="#">
                                     <img class="position-absolute positionPI csPI rounded" src="img/<?php echo $profile_picture ?>" alt="Profile picture">
                                     <!-- absolute profile picture -->
@@ -180,34 +180,29 @@ function checkIfFriend($username)
                                         </a>
                                         <p class="card-text"><?php echo $row["text_content"] ?></p>
                                     </div>
-                                    <?php if ($row["image_content"] != "")
-                                    {
-                                        if(str_contains($row["image_content"], ".mp4") ||str_contains($row["image_content"], ".webm"))
-                                        {?>
+                                    <?php if ($row["image_content"] != "") {
+                                        if (str_contains($row["image_content"], ".mp4") || str_contains($row["image_content"], ".webm")) { ?>
                                             <video src="images/<?php echo $row["image_content"] ?>" controls></video>
-                                        <?php } else{?>
+                                        <?php } else { ?>
                                             <img src="images/<?php echo $row["image_content"] ?>">
                                         <?php }
-                                    }{ ?>
+                                    } { ?>
                                     <?php } ?>
                                     <div class="card-footer text-muted text-center">
                                         <p class="marginZero">Posted at: <?php echo $row["posted_at"] ?></p>
                                     </div>
                                 </div>
                             </div>
-                            <?php
-                        }
-                    } else {
-                        echo "0 results";
+                <?php
                     }
+                } else {
+                    echo "0 results";
                 }
-            }
-            else
-            {
+            } else {
                 echo "You are not friends with this user";
             }
-            ?>
-        </div>
+                ?>
+                        </div>
     </main>
     <?php include("footer.php"); ?>
 </body>
