@@ -16,6 +16,7 @@ text_content varchar(500),
 image_content varchar(500),
 posted_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 user_id int not null,
+like_count int not null default 0,
 constraint user_post_id foreign key (user_id) references users(id)
 );
 
@@ -25,4 +26,14 @@ user1 int not null,
 user2 int not null,
 user1_confirm bit,
 user2_confirm bit
+);
+
+CREATE TABLE post_interactions(
+id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+user_id int not null,
+post_id int not null,
+liked bool,
+reposted bool,
+constraint post_interactions_user_id foreign key (user_id) references users(id),
+constraint post_interactions_post_id foreign key (post_id) references post(id)
 );

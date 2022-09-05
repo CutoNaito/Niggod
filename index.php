@@ -7,7 +7,7 @@ if (!isset($_SESSION["logged"]) || $_SESSION["logged"] !== true) {
     exit;
 }
 include("connection/config.php");
-$sql = "SELECT profile_picture, text_content, image_content, username, posted_at FROM post INNER JOIN users ON users.id = post.user_id ORDER BY posted_at DESC";
+$sql = "SELECT * FROM post INNER JOIN users ON users.id = post.user_id ORDER BY posted_at DESC";
 if ($stmt = $conn->prepare($sql)) {
     if ($stmt->execute()) {
         $result = $stmt->get_result();
@@ -56,8 +56,8 @@ function checkIfFriend($username)
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="script/index-script.ts"></script>
     <link rel="icon" href="img/NiggodRat.ico">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <link href="https://vjs.zencdn.net/7.20.2/video-js.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 </head>
 
 <body>
@@ -105,6 +105,10 @@ function checkIfFriend($username)
             ?>
                             <div class="container card-size">
                                 <div class="position-relative">
+                                    <a href="./user/like.php?postId=<?php echo $row["id"] ?>">
+                                        <i class="bi bi-fire"></i>
+                                        <p><?php echo $row["like_count"] ?></p>
+                                    </a>
                                 <a href="profile.php?username=<?php echo $row["username"] ?>">
                                         <img class="position-absolute positionPI csPI rounded" src="img/<?php echo $row["profile_picture"] ?>" alt="Profile picture"> <!-- absolute profile picture -->
                                     </a>
