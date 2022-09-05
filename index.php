@@ -1,5 +1,6 @@
 <?php
 session_start();
+global $conn;
 
 if (!isset($_SESSION["logged"]) || $_SESSION["logged"] !== true) {
     header("location: welcome.php");
@@ -56,6 +57,7 @@ function checkIfFriend($username)
     <script src="script/index-script.ts"></script>
     <link rel="icon" href="img/NiggodRat.ico">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <link href="https://vjs.zencdn.net/7.20.2/video-js.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -115,8 +117,15 @@ function checkIfFriend($username)
                                         </a>
                                         <p class="card-text"><?php echo $row["text_content"] ?></p>
                                     </div>
-                                    <?php if ($row["image_content"] != "") { ?>
-                                        <img src="images/<?php echo $row["image_content"] ?>">
+                                    <?php if ($row["image_content"] != "")
+                                            {
+                                                if(str_contains($row["image_content"], ".mp4") ||str_contains($row["image_content"], ".webm"))
+                                                {?>
+                                                    <video src="images/<?php echo $row["image_content"] ?>" controls></video>
+                                                    <?php } else{?>
+                                                    <img src="images/<?php echo $row["image_content"] ?>">
+                                                <?php }
+                                            }{ ?>
                                     <?php } ?>
                                     <div class="card-footer text-muted text-center">
                                         <p class="marginZero">Posted at: <?php echo $row["posted_at"] ?></p>
