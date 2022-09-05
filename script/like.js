@@ -3,7 +3,7 @@ async function likeFunc(postId, userId) {
     console.log(userId);
     let likesButton = document.getElementById(`like${postId}`);
     let likes = Number(likesButton.innerText);
-    let response = await fetch(`../niggod/user/like.php?postId=${postId}&userId=${userId}`, {
+    let response = await fetch(`../user/like.php?postId=${postId}&userId=${userId}`, {
         method: "POST"
     })
         .then(response => response.json())
