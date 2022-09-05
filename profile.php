@@ -52,6 +52,37 @@ if ($stmt = $conn->prepare($sql)) {
         $result = $stmt->get_result();
     }
 }
+
+function checkIfFriend($username)
+{
+    global $conn;
+    $sql = "SELECT id FROM users WHERE username = ?";
+    if ($stmt = $conn->prepare($sql)) {
+        $stmt->bind_param('s', $username);
+        if ($stmt->execute()) {
+            $result_func = $stmt->get_result();
+            if ($row_func = $result_func->fetch_assoc()) {
+                $user_id = $row_func["id"];
+            }
+        }
+    }
+    $sql = "SELECT * FROM friend WHERE user1 = ? AND user2 = ? OR user1 = ? AND user2 = ?";
+    if ($stmt = $conn->prepare($sql)) {
+        $stmt->bind_param('iiii', $_SESSION["id"], $user_id, $user_id, $_SESSION["id"]);
+        if ($stmt->execute()) {
+            $result_func = $stmt->get_result();
+            if ($row_func = $result_func->fetch_assoc()) {
+                if ($row_func["user1_confirm"] == "1" && $row_func["user2_confirm"] == "1") {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,6 +93,8 @@ if ($stmt = $conn->prepare($sql)) {
     <link rel="icon" href="img/NiggodRat.ico">
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://vjs.zencdn.net/7.20.2/video-js.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 </head>
 
 <body>
@@ -117,6 +150,10 @@ if ($stmt = $conn->prepare($sql)) {
             ?>
                         <div class="container card-size">
                             <div class="position-relative">
+                                <a href="./user/like.php?postId=<?php echo $row["id"] ?>">
+                                    <i class="bi bi-fire"></i>
+                                    <p><?php echo $row["like_count"] ?></p>
+                                </a>
                                 <a href="#">
                                     <img width="64" height="64" class="position-absolute positionPI csPI rounded" src="img/<?php echo $profile_picture ?>" alt="Profile picture">
                                     <!-- absolute profile picture -->
@@ -129,8 +166,15 @@ if ($stmt = $conn->prepare($sql)) {
                                     </a>
                                     <p class="card-text"><?php echo $row["text_content"] ?></p>
                                 </div>
-                                <?php if ($row["image_content"] != "") { ?>
-                                    <img src="images/<?php echo $row["image_content"] ?>">
+                                <?php if ($row["image_content"] != "")
+                                {
+                                    if(str_contains($row["image_content"], ".mp4") ||str_contains($row["image_content"], ".webm"))
+                                    {?>
+                                        <video src="images/<?php echo $row["image_content"] ?>" controls></video>
+                                    <?php } else{?>
+                                        <img src="images/<?php echo $row["image_content"] ?>">
+                                    <?php }
+                                }{ ?>
                                 <?php } ?>
                                 <div class="card-footer text-muted text-center">
                                     <p class="marginZero">Posted at: <?php echo $row["posted_at"] ?></p>
