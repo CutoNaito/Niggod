@@ -128,7 +128,7 @@ function checkIfFriend($username)
                                                 {?>
                                                     <video src="images/<?php echo $row["image_content"] ?>" controls></video>
                                                     <?php } else{?>
-                                                    <img src="images/<?php echo $row["image_content"] ?>">
+                                                    <img src="images/<?php echo $row["image_content"] ?> " ondblclick="likeFunc(<?php echo $row["id_post"] ?>, <?php echo $_SESSION["id"] ?>)">
                                                 <?php }
                                             }{ ?>
                                     <?php } ?>
