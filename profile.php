@@ -95,107 +95,113 @@ function checkIfFriend($username)
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="https://vjs.zencdn.net/7.20.2/video-js.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <script src="script/like.js"></script>
 </head>
 
 <body>
     <?php include("header.php"); ?>
     <main>
-
         <div class="container">
             <?php if ($_GET["username"] == $_SESSION["username"]) { ?>
-                <div class="card bg-dark text-white positionEditCard" style="width: 20%;">
-                    <div class="card-body">
-                        <a href="user/editprofile.php">
-                            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">
-                                Edit
-                            </button>
-                        </a>
+                <div class="position-relative ">
+                    <div class="card bg-white positionEditCard position-absolute">
+                        <div class="card-body text-white shadow ownSh">
+                            <a href="user/editprofile.php">
+                                <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">
+                                    Edit
+                                </button>
+                            </a>
+                        </div>
                     </div>
                 </div>
             <?php } ?>
             <?php if ($_GET["username"] != $_SESSION["username"]) { ?>
-                <div class="card bg-dark text-white positionEditCard" style="width: 20%;">
-                    <div class="card-body">
-                        <?php if ($friend_caption != "Friend Request Sent") { ?>
-                            <a href="user/addfriend.php?username=<?php echo $_GET["username"] ?>">
-                                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">
-                                    <?php echo $friend_caption ?>
-                                </button>
-                            </a>
-                        <?php } else {
-                            echo $friend_caption;
-                        } ?>
+                <div class="position-relative ">
+                    <div class="card bg-white positionEditCard position-absolute">
+                        <div class="card-body text-dark shadow ownSh">
+                            <?php if ($friend_caption != "Friend Request Sent") { ?>
+                                <a href="user/addfriend.php?username=<?php echo $_GET["username"] ?>">
+                                    <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">
+                                        <?php echo $friend_caption ?>
+                                    </button>
+                                </a>
+                            <?php } else {
+                                echo $friend_caption;
+                            } ?>
+                        </div>
                     </div>
                 </div>
             <?php } ?>
-            <div class="container card-size">
-                <div class="position-relative">
-                    <a href="#">
-                        <img class="position-absolute positionPI csPI rounded" src="img/<?php echo $profile_picture ?>" alt="Profile picture"> <!-- absolute profile picture -->
-                    </a>
-                </div>
-                <div class="card bg-dark text-white mt-2 mb-5">
-                    <div class="card-body">
-                        <h1 class="card-title"><?php echo $username ?></h1>
-                        <p id="profile-register">Registered to Niggod: <?php echo $date ?></p>
-                        <p id="bio"><?php echo $bio ?></p>
+            <div class="own_margin">
+                <div class="container card-size">
+                    <div class="shadow ownSh">
+                        <div class="position-relative">
+                            <a href="#">
+                                <img class="position-absolute positionPI2 csPI2 rounded shadow ownSh" src="img/<?php echo $profile_picture ?>" alt="Profile picture"> <!-- absolute profile picture -->
+                            </a>
+                        </div>
+                        <div class="card bg-dark text-white mt-2 mb-5">
+                            <div class="card-body">
+                                <h1 class="card-title" id="profile_name"><?php echo $username ?></h1>
+                                <p id="profile-register">Registered to Niggod: <?php echo $date ?></p>
+                                <p id="bio"><?php echo $bio ?></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
             <?php
-            if(checkIfFriend($username) || $username == $_SESSION["username"])
-            {
-                if (!empty($result)) {
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            ?>
-                            <div class="container card-size">
-                                <div class="position-relative">
-                                    <a href="./user/like.php?postId=<?php echo $row["id"] ?>">
-                                        <i class="bi bi-fire"></i>
-                                        <p><?php echo $row["like_count"] ?></p>
+            if (!empty($result)) {
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+            ?>
+                        <div class="container card-size">
+                            <div class="position-relative">
+                                <a href="#">
+                                    <img class="position-absolute positionPI csPI rounded" src="img/<?php echo $profile_picture ?>" alt="Profile picture">
+                                    <!-- absolute profile picture -->
+                                </a>
+                            </div>
+                            <div class="card bg-dark text-white mt-2 mb-2">
+                                <div class="card-body">
+                                    <a href="#" class="text-decoration-none text-white">
+                                        <h2 class="card-title"><?php echo $username ?></h2>
                                     </a>
-                                    <a href="#">
-                                        <img width="64" height="64" class="position-absolute positionPI csPI rounded" src="img/<?php echo $profile_picture ?>" alt="Profile picture">
-                                        <!-- absolute profile picture -->
-                                    </a>
+                                    <p class="card-text"><?php echo $row["text_content"] ?></p>
                                 </div>
-                                <div class="card bg-dark text-white mt-2 mb-2">
-                                    <div class="card-body">
-                                        <a href="#" class="text-decoration-none text-white">
-                                            <h2 class="card-title"><?php echo $username ?></h2>
-                                        </a>
-                                        <p class="card-text"><?php echo $row["text_content"] ?></p>
+
+                                <?php if ($row["image_content"] != "") {
+                                    if (str_contains($row["image_content"], ".mp4") || str_contains($row["image_content"], ".webm")) { ?>
+                                        <video src="images/<?php echo $row["image_content"] ?>" controls></video>
+                                    <?php } else { ?>
+                                        <img src="images/<?php echo $row["image_content"] ?> " ondblclick="likeFunc(<?php echo $row["id"] ?>, <?php echo $_SESSION["id"] ?>)">
+                                    <?php }
+                                } { ?>
+                                <?php } ?>
+
+                                <div class="card-footer text-muted text-center">
+                                    <div class="position-relative">
+                                        <div class="position-absolute positionLike">
+                                            <button class="rounded-pill btn-own-color text-white" type="button" id="like<?php echo $row["id"] ?>" onclick="likeFunc(<?php echo $row["id"] ?>, <?php echo $_SESSION["id"] ?>)">
+                                                <i class="bi bi-fire"></i>
+                                                <?php echo $row["like_count"] ?>
+                                            </button>
+                                        </div>
                                     </div>
-                                    <?php if ($row["image_content"] != "")
-                                    {
-                                        if(str_contains($row["image_content"], ".mp4") ||str_contains($row["image_content"], ".webm"))
-                                        {?>
-                                            <video src="images/<?php echo $row["image_content"] ?>" controls></video>
-                                        <?php } else{?>
-                                            <img src="images/<?php echo $row["image_content"] ?>">
-                                        <?php }
-                                    }{ ?>
-                                    <?php } ?>
-                                    <div class="card-footer text-muted text-center">
-                                        <p class="marginZero">Posted at: <?php echo $row["posted_at"] ?></p>
-                                    </div>
+                                    <p class="marginZero">Posted at: <?php echo $row["posted_at"] ?></p>
                                 </div>
                             </div>
-                            <?php
-                        }
-                    } else {
-                        echo "0 results";
+                        </div>
+            <?php
                     }
+                } else {
+                    echo "0 results";
                 }
-            }
-            else
-            {
+            } else {
                 echo "You are not friends with this user";
             }
             ?>
-        </div>
+
     </main>
     <?php include("footer.php"); ?>
 </body>
