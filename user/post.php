@@ -11,6 +11,7 @@ function generateRandomString($length = 16) {
 session_start();
 
 include "../connection/config.php";
+global $conn;
 $target_dir = "../images/";
 $target_file = $target_dir . basename($_FILES["fileInput"]["name"]);
 $newfilename = "";
