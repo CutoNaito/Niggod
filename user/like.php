@@ -5,9 +5,10 @@ include "../connection/config.php";
 global $conn;
 
 $post_id = trim($_GET["postId"]);
-$user_id = $_SESSION["id"];
-
+$user_id = trim($_GET["userId"]);
 $sql = "SELECT * FROM post_interactions WHERE post_id = ? AND user_id = ?";
+$data = ["type" => 0];
+
 if ($stmt = $conn->prepare($sql)) {
     $stmt->bind_param('ii', $post_id, $user_id);
     if ($stmt->execute())
@@ -31,7 +32,9 @@ if ($stmt = $conn->prepare($sql)) {
     }
 }
 
-header("location: ../index.php");
+header('Content-Type: application/json; charset=utf-8');
+echo json_encode($data);
+die();
 
 function createInteraction($post_id, $user_id) : void
 {
@@ -48,6 +51,7 @@ function createInteraction($post_id, $user_id) : void
 function like($post_id, $user_id) : void
 {
     global $conn;
+    global $data;
     $sql = "UPDATE post_interactions SET liked = true WHERE post_id = ? AND user_id = ?";
     if ($stmt = $conn->prepare($sql)) {
         $stmt->bind_param('ii', $post_id, $user_id);
@@ -56,6 +60,7 @@ function like($post_id, $user_id) : void
             updateLikeCount($post_id, 1);
         }
     }
+    $data = ["type" => 1];
 }
 
 function unlike($post_id, $user_id) : void
