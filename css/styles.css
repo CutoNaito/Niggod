@@ -89,6 +89,12 @@ div.bg-danger div.card {
   text-decoration: none !important;
 }
 
+.btn-own-color{
+  background-color: #e2490c !important;
+}
+.rounded-pill.btn-own-color{
+  border-color: #b13706 !important;
+}
 
 /* start icons in footer */
 .iconSize1,

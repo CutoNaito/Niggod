@@ -123,14 +123,14 @@ function checkIfFriend($username)
                                         if (str_contains($row["image_content"], ".mp4") || str_contains($row["image_content"], ".webm")) { ?>
                                             <video src="images/<?php echo $row["image_content"] ?>" controls></video>
                                         <?php } else { ?>
-                                            <img src="images/<?php echo $row["image_content"] ?>">
+                                            <img src="images/<?php echo $row["image_content"] ?>" ondblclick="likeFunc(<?php echo $row["id_post"] ?>, <?php echo $_SESSION["id"] ?>)">
                                         <?php }
                                     } { ?>
                                     <?php } ?>
                                     <div class="card-footer text-muted text-center">
                                         <div class="position-relative">
                                             <div class="position-absolute positionLike">
-                                                <button class="rounded-pill" type="button" id="like<?php echo $row["id_post"] ?>" onclick="likeFunc(<?php echo $row["id_post"] ?>, <?php echo $_SESSION["id"] ?>)">
+                                                <button class="rounded-pill btn-own-color text-white" type="button" id="like<?php echo $row["id_post"] ?>" onclick="likeFunc(<?php echo $row["id_post"] ?>, <?php echo $_SESSION["id"] ?>)">
                                                     <i class="bi bi-fire"></i>
                                                     <?php echo $row["like_count"] ?>
                                                 </button>

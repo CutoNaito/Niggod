@@ -101,7 +101,6 @@ function checkIfFriend($username)
 <body>
     <?php include("header.php"); ?>
     <main>
-
         <div class="container">
             <?php if ($_GET["username"] == $_SESSION["username"]) { ?>
                 <div class="position-relative ">
@@ -158,10 +157,6 @@ function checkIfFriend($username)
             ?>
                         <div class="container card-size">
                             <div class="position-relative">
-                                <button type="button" id="like<?php echo $row["id"] ?>" onclick="likeFunc(<?php echo $row["id"] ?>, <?php echo $_SESSION["id"] ?>)">
-                                    <i class="bi bi-fire"></i>
-                                    <?php echo $row["like_count"] ?>
-                                </button>
                                 <a href="#">
                                     <img class="position-absolute positionPI csPI rounded" src="img/<?php echo $profile_picture ?>" alt="Profile picture">
                                     <!-- absolute profile picture -->
@@ -172,28 +167,32 @@ function checkIfFriend($username)
                                     <a href="#" class="text-decoration-none text-white">
                                         <h2 class="card-title"><?php echo $username ?></h2>
                                     </a>
+                                    <p class="card-text"><?php echo $row["text_content"] ?></p>
                                 </div>
-                                <div class="card bg-dark text-white mt-2 mb-2">
-                                    <div class="card-body">
-                                        <a href="#" class="text-decoration-none text-white">
-                                            <h2 class="card-title"><?php echo $username ?></h2>
-                                        </a>
-                                        <p class="card-text"><?php echo $row["text_content"] ?></p>
+
+                                <?php if ($row["image_content"] != "") {
+                                    if (str_contains($row["image_content"], ".mp4") || str_contains($row["image_content"], ".webm")) { ?>
+                                        <video src="images/<?php echo $row["image_content"] ?>" controls></video>
+                                    <?php } else { ?>
+                                        <img src="images/<?php echo $row["image_content"] ?> " ondblclick="likeFunc(<?php echo $row["id"] ?>, <?php echo $_SESSION["id"] ?>)">
+                                    <?php }
+                                } { ?>
+                                <?php } ?>
+
+                                <div class="card-footer text-muted text-center">
+                                    <div class="position-relative">
+                                        <div class="position-absolute positionLike">
+                                            <button class="rounded-pill btn-own-color text-white" type="button" id="like<?php echo $row["id"] ?>" onclick="likeFunc(<?php echo $row["id"] ?>, <?php echo $_SESSION["id"] ?>)">
+                                                <i class="bi bi-fire"></i>
+                                                <?php echo $row["like_count"] ?>
+                                            </button>
+                                        </div>
                                     </div>
-                                    <?php if ($row["image_content"] != "") {
-                                        if (str_contains($row["image_content"], ".mp4") || str_contains($row["image_content"], ".webm")) { ?>
-                                            <video src="images/<?php echo $row["image_content"] ?>" controls></video>
-                                        <?php } else { ?>
-                                            <img src="images/<?php echo $row["image_content"] ?>">
-                                        <?php }
-                                    } { ?>
-                                    <?php } ?>
-                                    <div class="card-footer text-muted text-center">
-                                        <p class="marginZero">Posted at: <?php echo $row["posted_at"] ?></p>
-                                    </div>
+                                    <p class="marginZero">Posted at: <?php echo $row["posted_at"] ?></p>
                                 </div>
                             </div>
-                <?php
+                        </div>
+            <?php
                     }
                 } else {
                     echo "0 results";
@@ -201,8 +200,8 @@ function checkIfFriend($username)
             } else {
                 echo "You are not friends with this user";
             }
-                ?>
-                        </div>
+            ?>
+
     </main>
     <?php include("footer.php"); ?>
 </body>
