@@ -119,6 +119,7 @@ function checkIfFriend($username)
                                         </a>
                                         <p class="card-text"><?php echo $row["text_content"] ?></p>
                                     </div>
+
                                     <?php if ($row["image_content"] != "") {
                                         if (str_contains($row["image_content"], ".mp4") || str_contains($row["image_content"], ".webm")) { ?>
                                             <video src="images/<?php echo $row["image_content"] ?>" controls></video>

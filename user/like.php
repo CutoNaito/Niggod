@@ -5,7 +5,7 @@ include "../connection/config.php";
 global $conn;
 
 $post_id = trim($_GET["postId"]);
-$user_id = trim($_GET["userId"]);
+$user_id = $_SESSION["id"];
 $sql = "SELECT * FROM post_interactions WHERE post_id = ? AND user_id = ?";
 $data = ["type" => 0];
 
