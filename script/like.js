@@ -1,4 +1,6 @@
 async function likeFunc(postId, userId) {
+    console.log(postId);
+    console.log(userId);
     let likesButton = document.getElementById(`like${postId}`);
     let likes = Number(likesButton.innerText);
     let response = await fetch(`../user/like.php?postId=${postId}`, {
