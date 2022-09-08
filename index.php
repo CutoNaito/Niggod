@@ -133,15 +133,17 @@ function checkIfFriend($username)
                                     </div>
                                     <p class="marginZero">Posted at: <?php echo $row["posted_at"] ?></p>
                                 </div>
-                <?php
+                            </div>
+                            
+            <?php
                         }
                     }
                 } else {
                     echo "0 results";
                 }
             }
-                ?>
-                            </div>
+            ?>
+        </div>
     </main>
     <?php include("footer.php"); ?>
 </body>
