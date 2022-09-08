@@ -39,12 +39,13 @@ div.bg-danger div.card {
 }
 
 .positionEditCard {
-  right: 16.5em;
+  right: -4em;
   top: 6em;
   z-index: 1;
 }
 
 .positionPI {
+  top: -1px;
   left: -72px;
   height: 64px;
   width: 64px;
@@ -71,12 +72,12 @@ div.bg-danger div.card {
   margin-top: -6px;
 }
 
-.card-size {
-  width: 50% !important;
-}
-
 .shadow.ownSh {
   box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.308) !important;
+}
+
+.own_width2{
+  width: 50%!important;
 }
 
 .own_margin {
@@ -89,10 +90,11 @@ div.bg-danger div.card {
   text-decoration: none !important;
 }
 
-.btn-own-color{
+.btn-own-color {
   background-color: #e2490c !important;
 }
-.rounded-pill.btn-own-color{
+
+.rounded-pill.btn-own-color {
   border-color: #b13706 !important;
 }
 
@@ -107,11 +109,12 @@ div.bg-danger div.card {
 /* end icons in footer */
 
 /* Start Responsible */
-@media (min-width: 320px) {
+
+/* Extra small devices (portrait phones, less than 576px)*/
+@media (max-width: 575.98px) {
   p {
     font-size: 0.6rem;
   }
-
   .iconSize1 {
     width: 16px;
     height: 16px;
@@ -131,9 +134,46 @@ div.bg-danger div.card {
     width: 16px;
     height: 16px;
   }
+  .own_width {
+    width: 100% !important;
+  }
+
+  .positionPI.csPI {
+    top: 4px;
+    left: auto;
+    right: 6px;
+    position: absolute;
+    height: 48px;
+    width: 48px;
+    z-index: 1;
+  }
+
+  #profile_name {
+    margin-left: 60px;
+    margin-top: -20px;
+  }
+
+  #profile-register {
+    margin-left: 60px;
+    margin-top: -6px;
+  }
+
+  .positionPI2.csPI2 {
+    top: -20px;
+    left: -5px;
+    height: 76px;
+    width: 76px;
+  }
+
+  .positionEditCard {
+    right: -0.5em;
+    top: 6em;
+    z-index: 1;
+  }
 }
 
-@media (min-width: 544px) {
+/* Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) and (max-width: 767.98px) {
   p {
     font-size: 0.7rem;
   }
@@ -157,9 +197,30 @@ div.bg-danger div.card {
     width: 16px;
     height: 16px;
   }
+  .own_width {
+    width: 80% !important;
+  }
+
+  .positionPI.csPI {
+    top: 5px;
+    left: auto;
+    right: 8px;
+    position: absolute;
+    height: 48px;
+    width: 48px;
+    z-index: 1;
+  }
+
+  .positionPI2.csPI2 {
+    top: -30px;
+    left: -50px;
+    height: 92px;
+    width: 92px;
+  }
 }
 
-@media (min-width: 768px) {
+/* Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) and (max-width: 991.98px) {
   p {
     font-size: 0.8rem;
   }
@@ -183,13 +244,23 @@ div.bg-danger div.card {
     width: 36px;
     height: 26px;
   }
+  .own_width {
+    width: 70% !important;
+  }
+
+  .positionPI2.csPI2 {
+    top: -25px;
+    left: -50px;
+    height: 92px;
+    width: 92px;
+  }
 }
 
-@media (min-width: 992px) {
+/* Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) and (max-width: 1199.98px) {
   p {
     font-size: 0.9rem;
   }
-
   .iconSize1 {
     width: 26px;
     height: 26px;
@@ -209,13 +280,16 @@ div.bg-danger div.card {
     width: 36px;
     height: 36px;
   }
+  .own_width {
+    width: 60% !important;
+  }
 }
 
+/*Extra large devices (large desktops, 1200px and up)*/
 @media (min-width: 1200px) {
   p {
     font-size: 1rem;
   }
-
   .iconSize1 {
     width: 16px;
     height: 16px;
@@ -235,75 +309,9 @@ div.bg-danger div.card {
     width: 46px;
     height: 46px;
   }
-}
 
-@media screen and (max-width: 768px) {
-
-  .card-size {
-    width: 90% !important;
-  }
-
-  .positionPI.csPI {
-    top: 6px;
-    left: auto;
-    right: 8px;
-    position: absolute;
-    height: 48px;
-    width: 48px;
-    z-index: 1;
-  }
-
-  /*main pfp*/
-  .positionPI2.csPI2 {
-    top: -20px;
-    left: -45px;
-    position: absolute;
-    height: 84px;
-    width: 84px;
-    z-index: 1;
-  }
-
-}
-
-@media screen and (max-width: 544px) {
-  .positionPI2.csPI2 {
-    top: -10px;
-    left: -25px;
-    height: 58px;
-    width: 58px;
+  .own_width {
+    width: 50% !important;
   }
 }
-
-
-@media screen and (max-width: 1400px) {
-  .positionEditCard {
-    right: 13.5em;
-    top: 6em;
-    z-index: 1;
-  }
-
-  @media screen and (max-width: 1200px) {
-    .positionEditCard {
-      right: 10.6em;
-      top: 6em;
-      z-index: 1;
-    }
-  }
-
-  @media screen and (max-width: 991px) {
-    .positionEditCard {
-      right: 6.8em;
-      top: 6em;
-      z-index: 1;
-    }
-  }
-
-  @media screen and (max-width: 768px) {
-    .positionEditCard {
-      right: 0em;
-      top: 6em;
-      z-index: 1;
-    }
-  }
-
-  /* End Responsible */
+/* End Responsible */

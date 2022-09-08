@@ -54,6 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Sign Up - Niggod</title>
     <link rel="icon" href="../img/NiggodRat.ico">
     <link rel="stylesheet" href="../css/styles.css">
