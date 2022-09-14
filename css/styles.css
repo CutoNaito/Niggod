@@ -10,6 +10,11 @@
   max-width: 100%;
 }
 
+.own_title_margin {
+  margin-top: 0.1em;
+  margin-bottom: 0.15em !important;
+}
+
 .linkForButtons {
   text-decoration: none !important;
 }
